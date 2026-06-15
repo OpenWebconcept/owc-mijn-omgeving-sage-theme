@@ -1,0 +1,5 @@
+:root {
+	/* @todo: remove when nlds tokens are loaded */
+	--nl-paragraph-margin-block-end: 0;
+	--nl-paragraph-margin-block-start: 0;
+}

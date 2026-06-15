@@ -1,0 +1,24 @@
+@import '@gemeente-denhaag/side-navigation/index.css';
+
+:root {
+	/* @todo: remove when nlds tokens are loaded */
+	--denhaag-divider-border-color: var( --color-gray-300 );
+	--denhaag-divider-border-width: 1px;
+	--denhaag-divider-margin-block-end: 1rem;
+	--denhaag-divider-margin-block-start: 1rem;
+	--denhaag-side-navigation-display: flex;
+	--denhaag-side-navigation-flex-direction: column;
+	--denhaag-side-navigation-item-font-family: var( --font-sans );
+	--denhaag-side-navigation-item-font-size: var( --text-base );
+	--denhaag-side-navigation-item-font-weight: normal;
+	--denhaag-side-navigation-link-active-color: var( --color-primary );
+	--denhaag-side-navigation-link-active-font-weight: 700;
+	--denhaag-side-navigation-link-color: var( --color-black );
+	--denhaag-side-navigation-link-hover-color: var( --color-primary );
+	--denhaag-side-navigation-link-label-gap: 8px;
+	--denhaag-side-navigation-link-padding-block-end: 0.7rem;
+	--denhaag-side-navigation-link-padding-block-start: 0.7rem;
+	--denhaag-side-navigation-min-width: 100%;
+	--denhaag-side-navigation-mobile-display: none;
+	--denhaag-side-navigation-row-gap: 0.15rem;
+}

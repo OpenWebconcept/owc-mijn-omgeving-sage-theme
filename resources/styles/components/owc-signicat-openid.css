@@ -1,0 +1,16 @@
+.owc-signicat-openid__button {
+	@apply is-button w-fit after:content-none;
+}
+
+/* Modal styles */
+#owc-signicat-openid-logout {
+	@apply is-button is-button-outline;
+}
+
+#owc-signicat-openid-refresh {
+	@apply is-button;
+}
+
+.modal-footer {
+	@apply flex justify-end;
+}

@@ -1,0 +1,47 @@
+/*
+  Create the appropriate CSS for floating images. See:
+  https://github.com/WordPress/gutenberg/issues/33385#issuecomment-893551418
+*/
+.alignleft {
+	@variant sm {
+		@apply float-left !mr-4;
+	}
+}
+
+.is-root-container > .alignleft,
+.main > .alignleft {
+	@variant sm {
+		@apply ml-[calc((100%-var(--content-container-width))*0.5)];
+	}
+}
+
+.alignright {
+	@variant sm {
+		@apply float-right !ml-4;
+	}
+}
+
+.is-root-container > .alignright,
+.main > .alignright {
+	@variant sm {
+		@apply mr-[calc((100%-var(--content-container-width))*0.5)];
+	}
+}
+
+.aligncenter {
+	@apply mx-auto text-center;
+}
+
+/* Fix max-width on mobile */
+.is-layout-constrained
+	> :where( :not( .alignleft ):not( .alignright ):not( .alignfull ) ) {
+	@apply max-sm:!max-w-full;
+}
+
+/* If the last block inside .main is alignfull, remove bottom margin from both */
+.main:has( .alignfull:last-child ) {
+	&,
+	.alignfull:last-child {
+		@apply mb-0;
+	}
+}

@@ -1,0 +1,58 @@
+.footer,
+.is-root-container:has( .pattern-footer ) {
+	@apply border-t-(length:--footer-border-top-width) border-t-(--footer-border-top-color);
+
+	.wp-block-social-link-anchor svg path {
+		@apply text-[revert];
+	}
+
+	.pattern-footer {
+		@apply container mx-auto my-0 gap-y-8 py-14;
+
+		.wp-block-heading {
+			@apply text-(length:--footer-heading-font-size) text-(--footer-heading-color) md:mb-4 lg:mb-6;
+		}
+
+		a:not( .wp-block-button__link, .wp-block-social-link-anchor ) {
+			@apply hover:text-(--footer-text-color);
+		}
+
+		.wp-block-yard-icon-component {
+			@apply text-(--footer-iconlist-icon-color,var(--footer-text-color));
+		}
+
+		.wp-block-button__link {
+			@apply bg-(--footer-button-bg-color);
+
+			@variant hocus {
+				@apply border-(--footer-button-bg-color-hover) bg-(--footer-button-bg-color-hover);
+			}
+		}
+	}
+}
+
+.footer-menu {
+	.menu-item {
+		@apply text-sm;
+
+		&::before {
+			@apply mr-3 content-['|'];
+		}
+
+		&:first-child::before {
+			@apply content-none;
+		}
+
+		a {
+			@apply text-(--footer-text-color) no-underline;
+
+			@variant hocus {
+				@apply text-(--footer-text-color) underline;
+			}
+		}
+	}
+}
+
+.cky-banner-element + .footer-menu .menu-item:first-child::before {
+	@apply content-['|'];
+}

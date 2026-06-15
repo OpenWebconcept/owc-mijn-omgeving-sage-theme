@@ -1,0 +1,27 @@
+.breadcrumb .breadcrumb-item {
+	@apply text-(length:--breadcrumb-item-font-size);
+
+	&::after {
+		@apply fontawesome mx-2.5 text-sm text-(--breadcrumb-item-separator-color) xl:mx-3;
+		--fa-icon: var( --breadcrumb-item-separator );
+	}
+
+	a {
+		@apply text-(--breadcrumb-item-color) no-underline;
+
+		@variant hocus {
+			@apply underline;
+		}
+	}
+
+	span {
+		@apply text-(--breadcrumb-item-color);
+	}
+
+	&.active {
+		a,
+		span {
+			@apply text-(--breadcrumb-item-color-active);
+		}
+	}
+}

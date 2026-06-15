@@ -1,0 +1,13 @@
+.hamburger[aria-expanded='true'] span {
+	&:nth-child( 1 ) {
+		@apply w-8 translate-y-3 rotate-45;
+	}
+
+	&:nth-child( 2 ) {
+		@apply scale-0;
+	}
+
+	&:nth-child( 3 ) {
+		@apply w-8 -translate-y-2 -rotate-45;
+	}
+}

@@ -1,0 +1,55 @@
+:root {
+	/* File component borders */
+	--denhaag-file-border-color: var( --color-gray-300 );
+	--denhaag-file-border-style: solid;
+	--denhaag-file-border-width: 1px;
+
+	/* File focus outline */
+	--denhaag-file-focus-outline-color: var( --color-primary );
+	--denhaag-file-focus-outline-style: solid;
+	--denhaag-file-focus-outline-width: 2px;
+
+	/* File link */
+	--denhaag-file-link-color: var( --color-primary );
+	--denhaag-file-link-gap: 0.5em;
+	--denhaag-file-link-icon-width: 1.5em;
+
+	/* File hover */
+	--denhaag-file-hover-color: var( --color-primary );
+
+	/* File left section */
+	--denhaag-file-left-background-color: var( --color-gray-100 );
+	--denhaag-file-left-padding-inline-end: 0.5em;
+	--denhaag-file-left-padding-inline-start: 0.5em;
+
+	/* File right section */
+	--denhaag-file-right-gap: 0.25em;
+	--denhaag-file-right-padding-block-end: 0.25em;
+	--denhaag-file-right-padding-block-start: 0.25em;
+	--denhaag-file-right-padding-inline-end: 0.25em;
+	--denhaag-file-right-padding-inline-start: 0.25em;
+
+	/* Typography */
+	--denhaag-file-font-family: var( --font-sans );
+	--denhaag-file-font-size: var( --text-base );
+	--denhaag-file-font-weight: 400;
+	--denhaag-file-line-height: 1.5;
+}
+
+/* Temp, remove */
+.denhaag-icon {
+	@apply w-5;
+}
+
+/* Overrides */
+.denhaag-file__label {
+	/* Remove the description */
+	/* #description {
+		@apply hidden
+	} */
+}
+
+/* Ugly fix to account for double div roots in the file component */
+div:has( .denhaag-file ) + div:has( .denhaag-file ) .denhaag-file {
+	@apply border-t-0;
+}

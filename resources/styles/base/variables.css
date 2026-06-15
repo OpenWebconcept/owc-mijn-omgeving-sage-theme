@@ -1,0 +1,169 @@
+:root {
+	/* @link https://utopia.fyi/type/calculator?c=375,14,1.06,1100,16,1.1,10,2,&s=0.75|0.5|0.25,1.5|2|3|4|6,s-l&g=s,l,xl,12 */
+	--text-step--2: clamp( 0.7787rem, 0.7541rem + 0.1053vw, 0.8264rem );
+	--text-step--1: clamp( 0.8255rem, 0.7822rem + 0.1845vw, 0.9091rem );
+	--text-step-0: clamp( 0.875rem, 0.8103rem + 0.2759vw, 1rem );
+	--text-step-1: clamp( 0.9275rem, 0.8383rem + 0.3807vw, 1.1rem );
+	--text-step-2: clamp( 0.9832rem, 0.8658rem + 0.5006vw, 1.21rem );
+	--text-step-3: clamp( 1.0421rem, 0.8927rem + 0.6375vw, 1.331rem );
+	--text-step-4: clamp( 1.1047rem, 0.9188rem + 0.7932vw, 1.4641rem );
+	--text-step-5: clamp( 1.1709rem, 0.9436rem + 0.9701vw, 1.6105rem );
+	--text-step-6: clamp( 1.2412rem, 0.9669rem + 1.1704vw, 1.7716rem );
+	--text-step-7: clamp( 1.3157rem, 0.9882rem + 1.3971vw, 1.9487rem );
+	--text-step-8: clamp( 1.3946rem, 1.0072rem + 1.6529vw, 2.1436rem );
+	--text-step-9: clamp( 1.4783rem, 1.0233rem + 1.9413vw, 2.3579rem );
+	--text-step-10: clamp( 1.567rem, 1.0359rem + 2.2659vw, 2.5937rem );
+
+	/* Section spacing */
+	--spacing-size-1: clamp( 0.25rem, calc( 0.25rem + 2vw ), 0.5rem );
+	--spacing-size-2: clamp( 0.5rem, calc( 0.5rem + 2vw ), 1rem );
+	--spacing-size-3: clamp( 0.75rem, calc( 0.75rem + 2vw ), 1.5rem );
+	--spacing-size-4: clamp( 1.5rem, calc( 1.5rem + 2vw ), 3rem );
+	--spacing-size-5: clamp( 2rem, calc( 2rem + 2vw ), 4rem );
+	--spacing-size-6: clamp( 2.5rem, calc( 2.5rem + 2vw ), 5rem );
+	--spacing-size-7: clamp( 3rem, calc( 3rem + 2vw ), 6rem );
+
+	/* Body */
+	--body-bg: var( --color-white );
+	--body-font-weight: 400;
+
+	/* Container sizes */
+	--container-padding: --spacing( 4 );
+	--container-max-width: var( --breakpoint-xl );
+	--container-width: min(
+		calc( 100% - var( --container-padding ) * 2 ),
+		var( --container-max-width )
+	);
+	--content-container-width: min( var( --container-width ), 800px );
+
+	/* Typography */
+	--heading-color: var( --color-black );
+	--heading-font-family: var( --font-sans );
+	--heading-font-weight: 700;
+	--heading-text-transform: none;
+
+	--h1-color: var( --heading-color );
+	--h1-font-family: var( --heading-font-family );
+	--h1-font-weight: var( --heading-font-weight );
+	--h1-font-size: var( --text-9xl );
+	--h2-font-size: var( --text-4xl );
+	--h3-font-size: var( --text-2xl );
+	--h4-font-size: var( --text-xl );
+	--h5-font-size: var( --text-lg );
+	--h6-font-size: var( --text-base );
+
+	/* Links */
+	--link-color: var( --color-primary );
+	--link-color-hover: var( --color-primary-800 );
+
+	/* Buttons */
+	--button-after-content: none;
+	--button-after-font-weight: inherit;
+	--button-border-radius: 5px;
+	--button-border-width: 1px;
+	--button-color: var( --color-white );
+	--button-bg-color-hover: var( --color-primary-800 );
+	--button-bg-color: var( --color-primary );
+	--button-font-family: var( --font-sans );
+	--button-font-size: var( --text-base );
+	--button-font-weight: 400;
+	--button-padding-x: 1.25em;
+	--button-padding-y: 0.75em;
+	--button-subtle-bg-color-hover: var( --color-gray-200 );
+	--button-subtle-bg-color: var( --color-gray-100 );
+	--button-subtle-border-color: var( --button-subtle-bg-color );
+	--button-subtle-color: var( --color-black );
+	--button-subtle-shadow: none;
+	--button-subtle-font-weight: var( --button-font-weight );
+
+	/* Header */
+	--wp-admin-bar-height: var( --wp-admin--admin-bar--height, 0px );
+
+	/* Top bar */
+	--combined-bar-height: var( --nav-bar-height ); /* Altered in top-bar.css */
+	--top-bar-height: 35px;
+
+	/* Site logo */
+	--logo-height: 40px;
+
+	/* Navigation */
+	--nav-bar-height: 90px;
+	--nav-bar-shadow: none;
+	--nav-bar-border-bottom-color: none;
+	--nav-bar-border-bottom-width: 0;
+	--nav-menu-item-color-active: var( --color-primary );
+	--nav-menu-item-color-hover: var( --color-primary );
+	--nav-menu-item-color: #000;
+	--nav-menu-item-font-family: var( --font-sans );
+	--nav-menu-item-font-size: var( --text-base );
+	--nav-menu-item-font-weight: 400;
+	--nav-menu-item-before-bg-color: var( --color-primary );
+	--nav-menu-item-before-height: 0.25rem;
+	--nav-menu-item-before-bottom: 0;
+
+	/* Breadcrumbs */
+	--breadcrumb-item-color: var( --color-primary );
+	--breadcrumb-item-color-active: var( --breadcrumb-item-color );
+	--breadcrumb-item-font-size: var( --text-sm );
+	--breadcrumb-item-separator: '\f105';
+	--breadcrumb-item-separator-color: inherit;
+	--breadcrumbs-bg-color: var( --color-gray-100 );
+	--breadcrumbs-bg-color-home: var( --color-primary );
+	--breadcrumbs-height: 52px;
+	--breadcrumbs-height-home: var( --breadcrumbs-height );
+
+	/* Lists */
+	--list-marker-color: var( --color-primary );
+	--list-unstyled-item-gap: 0.5rem;
+
+	/* Icon list */
+	--iconlist-icon-color: var( --color-primary );
+
+	/* Separators */
+	--separator-bg-color: var( --color-gray-300 );
+	--separator-height: 2px;
+
+	/* Footer */
+	--footer-bg-color: #4b4b4b;
+	--footer-heading-font-size: var( --text-3xl );
+	--footer-heading-color: var( --color-primary-200 );
+	--footer-text-color: var( --color-white );
+	--footer-border-top-width: 0;
+	--footer-border-top-color: none;
+	--footer-button-bg-color: var( --button-bg-color );
+	--footer-button-bg-color-hover: var( --button-bg-color-hover );
+	--footer-iconlist-icon-color: var( --iconlist-icon-color );
+
+	/* Box */
+	--box-bg-color: var( --color-gray-100 );
+
+	/* Forms */
+	--input-radius: 0px;
+
+	/* Select */
+	--select-radius: var( --input-radius );
+
+	/* Gravity Forms */
+	--gf-progress-bar-bg-color: var( --color-gray-200 );
+	--gf-progress-bar-percentage-bg-color: var( --color-sky-700 );
+	--gf-progress-bar-height: 27px;
+	--gf-progress-bar-radius: 9999px;
+	--gform-body-bg: var( --color-white );
+	--gform-nav-bar-shadow: var( --nav-bar-shadow );
+
+	/* Social links */
+	--social-link-radius: 9999px;
+	--social-link-anchor-padding: 0.25em;
+
+	/* Emergency notification */
+	--emergency-notification-bg-color: var( --color-gray-100 );
+
+	/* Cards */
+	--card-padding: 1rem;
+	@variant lg {
+		--card-padding: 1.5rem;
+	}
+	@variant xl {
+		--card-padding: 1.75rem;
+	}
+}

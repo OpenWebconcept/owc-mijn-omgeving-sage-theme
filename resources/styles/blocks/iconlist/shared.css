@@ -1,0 +1,34 @@
+.wp-block-yard-iconlist {
+	.is-horizontal,
+	&.is-horizontal {
+		@apply gap-x-6 gap-y-2 xl:gap-x-8;
+	}
+}
+
+.wp-block-yard-iconlist-item {
+	@apply gap-x-4;
+
+	&:last-child {
+		@apply mb-0;
+	}
+
+	.wp-block-yard-icon-component {
+		@apply text-(--iconlist-icon-color);
+	}
+}
+
+.wp-block-yard-iconlist.is-style-unstyled {
+	@apply m-0 gap-(--list-unstyled-item-gap);
+
+	.wp-block-yard-iconlist-item {
+		@apply mb-0;
+
+		a {
+			@apply text-black no-underline;
+
+			@variant hocus {
+				@apply underline;
+			}
+		}
+	}
+}

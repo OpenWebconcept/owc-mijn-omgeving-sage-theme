@@ -1,0 +1,50 @@
+:root {
+	/* Tabs container */
+	--denhaag-tabs-display: flex;
+	--denhaag-tabs-position: relative;
+
+	/* Tabs list */
+	--denhaag-tabs-border-width: 2px;
+	--denhaag-tabs-border-style: solid;
+	--denhaag-tabs-border-color: var( --color-gray-300 );
+	--denhaag-tabs-width: 100%;
+	--denhaag-tabs-list-display: flex;
+
+	/* Tab indicator */
+	--denhaag-tabs-tab-indicator-border-color: var( --color-primary );
+	--denhaag-tabs-tab-indicator-bottom: 0;
+	--denhaag-tabs-tab-indicator-border-width: 2px;
+	--_denhaag-tabs-tab-indicator-inset-inline-start: 0;
+	--_denhaag-tabs-tab-indicator-size: 0;
+	--denhaag-tabs-tab-indicator-position: absolute;
+
+	/* Typography */
+	--denhaag-tabs-tab-font-family: var( --font-sans );
+	--denhaag-tabs-tab-font-size: var( --text-base );
+	--denhaag-tabs-tab-font-weight: 500;
+	--denhaag-tabs-tab-line-height: 1.5;
+	--denhaag-tabs-tab-selected-font-weight: 600;
+
+	/* Spacing */
+	--denhaag-tabs-tab-padding-block-start: 0.75rem;
+	--denhaag-tabs-tab-padding-block-end: 0.75rem;
+	--denhaag-tabs-tab-padding-inline-start: 1rem;
+	--denhaag-tabs-tab-padding-inline-end: 1rem;
+
+	/* Colors */
+	--denhaag-tabs-tab-color: var( --color-gray-700 );
+	--denhaag-tabs-tab-hover-color: var( --color-gray-800 );
+	--denhaag-tabs-tab-focus-color: var( --color-primary );
+	--denhaag-tabs-tab-selected-color: var( --color-primary );
+
+	/* Outline & Focus */
+	--denhaag-tabs-tab-outline: 2px solid var( --color-primary );
+	--denhaag-focus-border: 2px solid var( --color-primary );
+
+	/* Cursor */
+	--denhaag-tabs-tab-cursor: pointer;
+}
+
+.denhaag-tabs {
+	@apply mb-8 lg:mb-12;
+}

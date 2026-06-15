@@ -1,0 +1,70 @@
+@variant print {
+	body {
+		@apply bg-white leading-normal text-black;
+	}
+
+	header {
+		@apply hidden;
+	}
+
+	main {
+		@apply !mt-0;
+	}
+
+	h1 {
+		@apply text-[24pt];
+	}
+
+	h2,
+	h3,
+	h4 {
+		@apply my-[10pt] text-[16pt];
+	}
+
+	h5,
+	h6 {
+		@apply mt-[10pt] mb-[7pt] text-[14pt];
+	}
+
+	h1,
+	h2,
+	h3,
+	h4,
+	h5,
+	h6 {
+		@apply break-inside-avoid break-after-avoid;
+	}
+
+	p,
+	p.has-lead-font-size,
+	p.has-medium-font-size,
+	p.has-small-font-size,
+	address,
+	li,
+	dt,
+	dd,
+	blockquote {
+		@apply !text-[12pt];
+	}
+
+	a[href^='http']::after {
+		@apply text-[80%];
+		content: ' <' attr( href ) '> ';
+	}
+
+	a,
+	blockquote,
+	img,
+	table,
+	pre,
+	ul,
+	ol,
+	dl,
+	.wp-block-media-text {
+		@apply break-inside-avoid;
+	}
+
+	.wp-block-embed.is-type-video {
+		@apply !hidden !size-0 !overflow-hidden !leading-none whitespace-nowrap;
+	}
+}

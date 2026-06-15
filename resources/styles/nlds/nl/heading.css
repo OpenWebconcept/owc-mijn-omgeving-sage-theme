@@ -1,0 +1,50 @@
+:root {
+	/* nl-heading variables (from CSS) */
+	--nl-heading-level-1-color: var( --h1-color );
+	--nl-heading-level-1-font-family: var( --heading-font-family );
+	--nl-heading-level-1-font-size: var( --h1-font-size );
+	--nl-heading-level-1-font-weight: var( --h1-font-weight );
+	--nl-heading-level-1-line-height: 1.2;
+	--nl-heading-level-1-margin-block-start: 1.75em;
+	--nl-heading-level-1-margin-block-end: 0.75em;
+
+	--nl-heading-level-2-color: var( --heading-color );
+	--nl-heading-level-2-font-family: var( --heading-font-family );
+	--nl-heading-level-2-font-size: var( --h2-font-size );
+	--nl-heading-level-2-font-weight: var( --heading-font-weight );
+	--nl-heading-level-2-line-height: 1.3;
+	--nl-heading-level-2-margin-block-start: 1.75em;
+	--nl-heading-level-2-margin-block-end: 0.75em;
+
+	--nl-heading-level-3-color: var( --heading-color );
+	--nl-heading-level-3-font-family: var( --heading-font-family );
+	--nl-heading-level-3-font-size: var( --h3-font-size );
+	--nl-heading-level-3-font-weight: var( --heading-font-weight );
+	--nl-heading-level-3-line-height: 1.4;
+	--nl-heading-level-3-margin-block-start: 1.75em;
+	--nl-heading-level-3-margin-block-end: 0.75em;
+
+	--nl-heading-level-4-color: var( --heading-color );
+	--nl-heading-level-4-font-family: var( --heading-font-family );
+	--nl-heading-level-4-font-size: var( --h4-font-size );
+	--nl-heading-level-4-font-weight: var( --heading-font-weight );
+	--nl-heading-level-4-line-height: 1.5;
+	--nl-heading-level-4-margin-block-start: 1.75em;
+	--nl-heading-level-4-margin-block-end: 0.75em;
+
+	--nl-heading-level-5-color: var( --heading-color );
+	--nl-heading-level-5-font-family: var( --heading-font-family );
+	--nl-heading-level-5-font-size: var( --h5-font-size );
+	--nl-heading-level-5-font-weight: var( --heading-font-weight );
+	--nl-heading-level-5-line-height: 1.5;
+	--nl-heading-level-5-margin-block-start: 1.75em;
+	--nl-heading-level-5-margin-block-end: 0.75em;
+
+	--nl-heading-level-6-color: var( --heading-color );
+	--nl-heading-level-6-font-family: var( --heading-font-family );
+	--nl-heading-level-6-font-size: var( --h6-font-size );
+	--nl-heading-level-6-font-weight: var( --heading-font-weight );
+	--nl-heading-level-6-line-height: 1.6;
+	--nl-heading-level-6-margin-block-start: 1.75em;
+	--nl-heading-level-6-margin-block-end: 0.75em;
+}

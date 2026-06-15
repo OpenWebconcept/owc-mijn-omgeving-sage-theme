@@ -1,0 +1,14 @@
+.owc-openkaarten-streetmap {
+	&#owc-openkaarten-streetmap {
+		--owc-filters-primary: var( --color-primary );
+		--search-primary-color: var( --color-primary );
+		--owc-openkaarten-streetmap--close-btn-color: var( --color-primary );
+		--button-color: var( --color-primary );
+		--owc-openkaarten-streetmap--primary-color: var( --color-primary );
+	}
+
+	/* Override the width restriction */
+	.owc-openkaarten-streetmap-container {
+		@apply w-full;
+	}
+}

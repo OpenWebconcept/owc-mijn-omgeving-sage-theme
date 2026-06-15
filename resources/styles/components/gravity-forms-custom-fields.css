@@ -1,0 +1,136 @@
+/* All custom Gravity Forms field styles */
+.gform_wrapper.gravity-theme {
+	--gfield-auth-logo-size: 80px;
+	--gfield-auth-logo-gap: --spacing( 5 );
+	--gfield-auth-logo-size-safe: calc(
+		var( --gfield-auth-logo-size ) + var( --gfield-auth-logo-gap ) +
+			var( --gfield-auth-padding )
+	);
+	--gfield-auth-padding: --spacing( 2 );
+	--gfield-auth-bg-color-hover: var( --color-gray-100 );
+	--gfield-auth-border-radius: 1rem;
+	--gfield-auth-min-height: calc(
+		var( --gfield-auth-logo-size ) +
+			calc( var( --gfield-auth-padding ) * 2 )
+	);
+
+	/* Plugin: owc-signicat-openid */
+	.gfield--type-owc-signicat-openid-eherkenning,
+	.gfield--type-owc-signicat-openid-digid {
+		@apply relative flex min-h-(--gfield-auth-min-height) flex-col justify-center rounded-(--gfield-auth-border-radius) p-(--gfield-auth-padding) pl-(--gfield-auth-logo-size-safe) leading-snug transition-colors;
+
+		&:hover {
+			@apply cursor-pointer bg-(--gfield-auth-bg-color-hover);
+		}
+
+		&:focus-within {
+			@apply ring-2;
+		}
+
+		.ginput_container_openid {
+			a {
+				@apply a-linkable-area;
+			}
+
+			img {
+				@apply absolute top-(--gfield-auth-padding) left-(--gfield-auth-padding) size-(--gfield-auth-logo-size);
+			}
+		}
+
+		.gform-field-label {
+			@apply mb-0 text-lg;
+		}
+
+		.gfield_required {
+			@apply hidden;
+		}
+
+		.alert {
+			@apply mb-6;
+
+			ul {
+				@apply mt-0 mt-2;
+			}
+		}
+
+		&:has( .alert ) {
+			.gform-field-label {
+				@apply mb-2;
+			}
+		}
+	}
+
+	/* Plugin: owc-gravityforms-bag-address */
+	.gfield--type-bag_address {
+		.ginput_container_bag_address {
+			@apply gap-2;
+		}
+
+		.bag-search-button {
+			@apply text-center;
+		}
+
+		.result:not( :empty ) {
+			@apply mb-6 h-auto! w-full bg-red-100 px-4 py-2;
+		}
+
+		input[readonly] {
+			@apply bg-gray-100;
+		}
+	}
+
+	/* Plugin: owc-gravityforms-digid (old, only used by Hoeksche Waard) */
+	.gfield--input-type-digid {
+		.digid-btn {
+			@apply flex items-center gap-x-3 rounded-(--gfield-auth-border-radius) p-(--gfield-auth-padding) text-black no-underline transition-all;
+
+			@variant hocus {
+				@apply bg-(--gfield-auth-bg-color-hover);
+			}
+		}
+
+		.digid-btn__text {
+			@apply pl-0!;
+		}
+
+		.digid-btn__img {
+			@apply size-(--gfield-auth-logo-siz);
+		}
+
+		.digid-btn__title {
+			@apply mb-0.5 text-lg font-bold;
+		}
+	}
+
+	/* Anoigous custom field types */
+	.gfield--type-owc-anoigo-openid-digid,
+	.gfield--type-owc-anoigo-openid-eidas,
+	.gfield--type-owc-anoigo-openid-eherkenning {
+		@apply rounded-theme relative flex flex-col border border-gray-300 p-6 transition-all;
+
+		&:hover,
+		&:focus-within {
+			@apply bg-gray-100;
+		}
+
+		.ginput_container {
+			@apply -order-1 mb-4;
+
+			img {
+				@apply size-(--gfield-auth-logo-size);
+			}
+
+			a {
+				@apply a-linkable-area;
+			}
+		}
+
+		.gform-field-label {
+			@apply mb-0;
+		}
+
+		.gfield_description {
+			@apply pt-0;
+		}
+	}
+}

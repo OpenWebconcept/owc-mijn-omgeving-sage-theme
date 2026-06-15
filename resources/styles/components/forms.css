@@ -1,0 +1,52 @@
+@variant all-form-text-inputs {
+	@apply rounded-(--input-radius) border border-gray-400 bg-white p-3 text-base leading-snug;
+
+	&:focus-visible,
+	&:focus {
+		@apply border-primary outline-primary;
+	}
+
+	&[readonly='readonly'] {
+		@apply cursor-not-allowed bg-gray-100;
+
+		&:focus {
+			@apply border-gray-400;
+		}
+	}
+}
+
+select:not( [multiple] ) {
+	@apply hover:ring-primary cursor-pointer rounded-(--select-radius) border border-gray-400 bg-gray-50 shadow-none;
+
+	&:hover {
+		@apply ring-1;
+	}
+}
+
+input[type='checkbox'],
+input[type='radio'] {
+	@apply accent-primary cursor-pointer;
+
+	+ label {
+		@apply ml-1 cursor-pointer !text-base;
+	}
+}
+
+input[type='submit'],
+input[type='button'] {
+	@apply is-button;
+}
+
+input[type='file'] {
+	@apply cursor-pointer text-sm;
+
+	&::file-selector-button {
+		@apply is-button is-button-subtle is-button-small mr-3 border-none;
+	}
+
+	&:hover {
+		&::file-selector-button {
+			@apply border-(--button-subtle-bg-color-hover) bg-(--button-subtle-bg-color-hover) text-(--button-subtle-color);
+		}
+	}
+}

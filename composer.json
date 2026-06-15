@@ -1,0 +1,51 @@
+{
+	"name": "owc/mijn-omgeving-sage-theme",
+	"description": "OWC Mijn Omgeving starter theme built with Sage",
+	"keywords": [
+		"wordpress",
+		"theme",
+		"sage",
+		"owc",
+		"mijn-omgeving"
+	],
+	"homepage": "https://github.com/OpenWebconcept/owc-mijn-omgeving-sage-theme",
+	"type": "wordpress-theme",
+	"license": "MIT",
+	"authors": [
+		{
+			"name": "Yard | Digital Agency",
+			"email": "info@yard.nl",
+			"homepage": "https://yard.nl"
+		}
+	],
+	"require": {
+		"php": ">=8.2",
+		"composer/installers": "^2.2"
+	},
+	"autoload": {
+		"psr-4": {
+			"OWC\\MijnOmgeving\\": "app/"
+		}
+	},
+	"config": {
+		"optimize-autoloader": true,
+		"preferred-install": "dist",
+		"sort-packages": true,
+		"allow-plugins": {
+			"composer/installers": true
+		}
+	},
+	"extra": {
+		"installer-name": "owc-mijn-omgeving",
+		"acorn": {
+			"providers": [
+				"OWC\\MijnOmgeving\\Providers\\ThemeServiceProvider"
+			]
+		}
+	},
+	"scripts": {
+		"post-autoload-dump": [
+			"Roots\\Acorn\\ComposerScripts::postAutoloadDump"
+		]
+	}
+}

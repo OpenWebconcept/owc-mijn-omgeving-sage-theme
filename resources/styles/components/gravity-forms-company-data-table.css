@@ -1,0 +1,24 @@
+.wp-block-owc-gravityforms-kvk-prefill-company-data-table {
+	@apply w-full leading-relaxed;
+
+	table {
+		@apply w-full border-collapse;
+	}
+
+	th,
+	td {
+		@apply p-2 text-left md:p-3;
+	}
+
+	th {
+		@apply w-[20ch] min-w-[120px];
+	}
+
+	tbody {
+		@apply align-top;
+
+		tr {
+			@apply border-b border-gray-300;
+		}
+	}
+}

@@ -1,0 +1,16 @@
+.owc-anoigo-openid__button {
+	@apply is-button w-fit after:content-none;
+}
+
+/* Modal styles */
+#owc-anoigo-openid-logout {
+	@apply is-button is-button-outline;
+}
+
+#owc-anoigo-openid-refresh {
+	@apply is-button;
+}
+
+.modal-footer {
+	@apply flex justify-end;
+}

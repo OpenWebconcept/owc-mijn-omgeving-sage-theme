@@ -1,0 +1,274 @@
+.gform_wrapper.gravity-theme {
+	@variant all-form-text-inputs {
+		@apply px-3 py-3 !text-base;
+	}
+
+	.gform_fields {
+		@apply grid gap-y-6;
+	}
+
+	.gfield_label {
+		@apply text-base leading-snug;
+	}
+
+	.gform-field-label {
+		@apply w-full text-base;
+	}
+
+	.gform_required_legend {
+		@apply mb-3 text-xs text-gray-500;
+	}
+
+	.gsection {
+		@apply border-gray-300!;
+	}
+
+	/* Overwrite the "Veldgrootte" option. It's wrong on many of the imported forms. */
+	.gfield {
+		input.small,
+		select.small,
+		input.medium,
+		select.medium {
+			@apply w-full;
+		}
+	}
+
+	.gfield--type-honeypot {
+		@apply hidden;
+	}
+
+	.field_description_above .gfield_description {
+		@apply pb-2;
+
+		&.gfield_consent_description {
+			@apply mb-2;
+		}
+	}
+
+	.gfield_description {
+		@apply mt-0 text-base;
+
+		&.ginput_counter,
+		&.gform_fileupload_rules {
+			@apply pb-0;
+		}
+
+		p {
+			@apply mb-3;
+		}
+	}
+
+	> .gform_validation_errors {
+		@apply rounded-theme border-danger mb-8 py-6 shadow-none md:mb-10;
+		--outline-color: -webkit-focus-ring-color;
+
+		&:focus {
+			@apply outline-(--outline-color);
+		}
+
+		> .gform_submission_error {
+			@apply text-danger text-lg font-bold;
+		}
+
+		> ol {
+			@apply mb-0;
+
+			li {
+				@apply mb-0;
+			}
+
+			a {
+				@apply text-danger text-sm;
+
+				&:focus {
+					@apply outline-(--outline-color);
+				}
+			}
+		}
+	}
+
+	.gfield_validation_message {
+		@apply mt-2 rounded-(--input-radius) px-3 py-2 text-sm leading-[1.5];
+	}
+
+	/* Progress bar */
+	.gf_progressbar {
+		@apply rounded-(--gf-progress-bar-radius) bg-(--gf-progress-bar-bg-color);
+	}
+
+	.gf_progressbar_title {
+		@apply text-xs text-gray-500;
+	}
+
+	.gf_progressbar_wrapper {
+		@apply mb-6;
+	}
+
+	.gf_progressbar_percentage {
+		@apply flex h-(--gf-progress-bar-height) items-center justify-center rounded-s-(--gf-progress-bar-radius)!;
+		/* stylelint-disable-next-line declaration-property-value-no-unknown */
+		background-image: repeating-linear-gradient(
+			-60deg,
+			transparent,
+			transparent --spacing( 6 ),
+			rgba( 255, 255, 255, 0.15 ) --spacing( 6 ),
+			rgba( 255, 255, 255, 0.15 ) --spacing( 12 )
+		);
+
+		span {
+			@apply text-xs text-shadow-sm;
+		}
+
+		/* Specificity */
+		&.percentbar_blue {
+			@apply bg-(--gf-progress-bar-percentage-bg-color);
+		}
+	}
+
+	/* Date */
+	.ginput_complex .ginput_container_date select {
+		@apply w-auto min-w-0;
+	}
+
+	/* Fileupload: single */
+	.gform_fileupload_rules {
+		@apply text-xs text-gray-500;
+	}
+
+	.gfield_fileupload_filesize {
+		@apply p-0 text-xs leading-snug text-gray-500;
+	}
+
+	.gfield_fileupload_percent {
+		@apply hidden;
+	}
+
+	.gform_delete_file {
+		@apply rounded-theme ml-auto flex size-8 items-center justify-center bg-gray-200 transition;
+
+		&:hover {
+			@apply bg-gray-300;
+		}
+	}
+
+	.ginput_preview_list {
+		@apply my-6 divide-y divide-gray-200;
+
+		&:not( :empty ) {
+			@apply border-t border-b border-gray-200;
+		}
+	}
+
+	.ginput_preview {
+		@apply m-0 flex items-center gap-3 px-2 py-1 leading-snug;
+
+		&:empty {
+			@apply hidden;
+		}
+	}
+
+	/* Fileupload: multiple */
+	.gform_fileupload_multifile {
+		.moxie-shim {
+			@apply opacity-0; /* Hide the fake file input */
+		}
+	}
+
+	.gform_drop_area {
+		@apply border-gray-300! bg-gray-50;
+	}
+
+	.gform_button_select_files {
+		@apply is-button is-button-subtle is-button-small after:content-none;
+	}
+
+	button[type='button'].gfield_choice_all_toggle {
+		@apply is-button is-button-small is-button-subtle;
+	}
+
+	/* Form footer */
+	.gform-page-footer,
+	.gform_footer {
+		@apply mt-6 flex flex-col justify-end gap-2 border-t border-gray-300 pt-6 sm:flex-row sm:items-center;
+
+		.gform_button,
+		.gform-theme-button {
+			@apply m-0 w-full !text-center sm:w-auto;
+		}
+
+		.gform_save_link {
+			@apply mr-auto ml-0 flex after:!content-none sm:order-first;
+		}
+	}
+
+	input[type='button'].gform_previous_button {
+		@apply is-button is-button-outline;
+	}
+
+	button[type='button'].gform_save_link {
+		@apply is-button is-button-subtle;
+
+		svg path {
+			@apply fill-black;
+		}
+	}
+
+	/* Save and continue */
+	.form_saved_message {
+		@apply rounded-theme normalize-child-margin my-6 bg-(--box-bg-color) p-6 md:my-8 md:p-8;
+
+		.gform-footer {
+			@apply mt-0 border-0 pb-0;
+		}
+
+		.gform_send_resume_link_button {
+			@apply mb-0;
+		}
+
+		.resume_form_link_wrapper {
+			+ p {
+				@apply text-sm;
+			}
+		}
+	}
+
+	.gfield_error .gfield_repeater_cell label,
+	.gfield_error label,
+	.gfield_error legend,
+	.gfield_validation_message,
+	.validation_message,
+	[aria-invalid='true'] + label,
+	label + [aria-invalid='true'],
+	[aria-invalid='true'] {
+		@apply text-danger border-danger!;
+	}
+
+	input[aria-invalid='true'] {
+		@apply text-black;
+	}
+
+	/* Clients did hacky stuff with the custom HTML field. Resetting styles here. */
+	.wp-block-columns {
+		@apply my-0!;
+	}
+}
+
+.gform_confirmation_message {
+	@apply normalize-child-margin rounded-theme bg-white p-(--card-padding) shadow;
+}
+
+.gform-recaptcha-disclaimer {
+	@apply text-xs !leading-[1.5] text-gray-500;
+
+	a {
+		@apply text-inherit;
+	}
+}
+
+/* For readability, make body white when there are forms on the page */
+body:has( .gform_wrapper ) {
+	--emergency-notification-bg-color: var( --color-gray-100 );
+	--body-bg: var( --gform-body-bg );
+	--breadcrumbs-bg-color: var( --gform-body-bg );
+	--nav-bar-shadow: var( --gform-nav-bar-shadow );
+}

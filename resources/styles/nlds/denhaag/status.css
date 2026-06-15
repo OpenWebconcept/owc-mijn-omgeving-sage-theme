@@ -1,0 +1,167 @@
+:root {
+	/* Process Steps General */
+	--denhaag-process-steps-font-family: var( --font-sans );
+	--denhaag-process-steps-font-size: var( --text-base );
+	--denhaag-process-steps-line-height: 24px;
+
+	--denhaag-process-steps-step-padding-block-start: 0;
+	--denhaag-process-steps-step-padding-block-end: 0;
+	--denhaag-process-steps-step-distance: 40px;
+	--denhaag-process-steps-sub-step-distance: 12px;
+	--denhaag-process-steps-step-content-margin: 12px;
+
+	/* Step Header */
+	--denhaag-process-steps-step-header-align-items: center;
+	--denhaag-process-steps-step-collapse-icon-size: 16px;
+	--denhaag-process-steps-step-collapse-icon-padding: 4px;
+
+	/* Step Heading */
+	--denhaag-process-steps-step-heading-color: var( --denhaag-color-grey-4 );
+	--denhaag-process-steps-step-heading-font-family: var( --font-sans );
+	--denhaag-process-steps-step-heading-font-size: var( --text-xl );
+	--denhaag-process-steps-step-heading-font-weight: 400;
+	--denhaag-process-steps-step-heading-line-height: var(
+		--text-base--line-height
+	);
+	--denhaag-process-steps-step-heading-overflow-wrap: anywhere;
+
+	--denhaag-process-steps-step-heading-not-checked-color: var(
+		--color-black
+	);
+	--denhaag-process-steps-step-heading-checked-color: var( --color-black );
+	--denhaag-process-steps-step-heading-checked-font-size: var( --text-xl );
+	--denhaag-process-steps-step-heading-checked-font-weight: 700;
+	--denhaag-process-steps-step-heading-checked-line-height: var(
+		--text-base--line-height
+	);
+	--denhaag-process-steps-step-heading-current-color: var( --color-primary );
+	--denhaag-process-steps-step-heading-current-font-size: var( --text-xl );
+	--denhaag-process-steps-step-heading-current-font-weight: 700;
+	--denhaag-process-steps-step-heading-current-line-height: var(
+		--text-base--line-height
+	);
+	--denhaag-process-steps-step-heading-warning-color: var(
+		--color-orange-500
+	);
+	--denhaag-process-steps-step-heading-error-color: var( --color-danger );
+
+	/* Step Meta */
+	--denhaag-process-steps-step-meta-color: var( --color-black );
+	--denhaag-process-steps-step-meta-font-size: 16px;
+	--denhaag-step-marker-size: 32px;
+	--denhaag-process-steps-step-meta-date-color: var( --color-black );
+	--denhaag-process-steps-step-meta-date-font-size: var( --text-sm );
+	--denhaag-process-steps-step-meta-nested-font-size: 14px;
+	--denhaag-process-steps-step-meta-nested-margin-block-start: 0.25rem;
+
+	/* Step Marker */
+	--denhaag-step-marker-border-width: 2px;
+	--denhaag-step-marker-font-weight: 400;
+	--denhaag-step-marker-margin: 0;
+	--denhaag-step-marker-padding: 12px;
+	--denhaag-step-marker-icon-size: 20px;
+	--denhaag-step-marker-nested-size: 16px;
+	--denhaag-step-marker-nested-icon-size: 10px;
+	--denhaag-step-marker-connector-outline-width: 1px;
+
+	/* Step Content */
+	--denhaag-process-steps-step-content-color: var( --color-gray-300 );
+
+	/* Button tokens for step toggle */
+	--utrecht-button-subtle-font-size: var( --text-base );
+	--utrecht-button-subtle-background-color: transparent;
+	--utrecht-button-subtle-color: auto;
+	--utrecht-button-padding-block-start: 0;
+	--utrecht-button-padding-block-end: 0;
+	--utrecht-button-padding-inline-start: 0;
+	--utrecht-button-padding-inline-end: 0;
+	--utrecht-button-icon-gap: 4px;
+
+	/* Step Marker Typography */
+	--denhaag-step-marker-font-family: var( --font-sans );
+	--denhaag-step-marker-font-size: var( --text-sm );
+	--denhaag-step-marker-font-weight: 400;
+
+	/* Step Marker Default State */
+	--denhaag-step-marker-default-background-color: var( --color-gray-300 );
+	--denhaag-step-marker-default-border-color: var( --color-gray-300 );
+	--denhaag-step-marker-default-color: var( --color-white );
+	--denhaag-step-marker-default-nested-color: var( --color-gray-300 );
+
+	/* Step Marker Checked State */
+	--denhaag-step-marker-checked-background-color: var( --color-white );
+	--denhaag-step-marker-checked-border-color: var( --color-primary );
+	--denhaag-step-marker-checked-color: var( --color-primary );
+
+	/* Step Marker Current State */
+	--denhaag-step-marker-current-background-color: var( --color-primary );
+	--denhaag-step-marker-current-border-color: var( --color-primary );
+	--denhaag-step-marker-current-color: var( --color-white );
+	--denhaag-step-marker-current-nested-color: var( --color-primary );
+
+	/* Step Marker Not Checked State */
+	--denhaag-step-marker-not-checked-background-color: var( --color-white );
+	--denhaag-step-marker-not-checked-border-color: var( --color-gray-300 );
+	--denhaag-step-marker-not-checked-color: var( --color-black );
+
+	/* Step Marker Disabled State */
+	--denhaag-step-marker-disabled-background-color: var( --color-gray-300 );
+	--denhaag-step-marker-disabled-border-color: var( --color-gray-300 );
+	--denhaag-step-marker-disabled-color: var( --color-gray-700 );
+
+	/* Step Marker Warning State */
+	--denhaag-step-marker-warning-background-color: var( --color-orange-500 );
+	--denhaag-step-marker-warning-border-color: var( --color-orange-500 );
+	--denhaag-step-marker-warning-color: var( --color-white );
+	--denhaag-step-marker-warning-nested-background-color: var( --color-white );
+	--denhaag-step-marker-warning-nested-border-color: var(
+		--color-orange-500
+	);
+
+	/* Step Marker Error State */
+	--denhaag-step-marker-error-background-color: var( --color-danger );
+	--denhaag-step-marker-error-border-color: var( --color-danger );
+	--denhaag-step-marker-error-color: var( --color-white );
+
+	/* Step Marker Connectors */
+	--denhaag-step-marker-connector-default-outline-color: var(
+		--color-gray-300
+	);
+	--denhaag-step-marker-connector-not-checked-outline-color: var(
+		--color-gray-300
+	);
+	--denhaag-step-marker-connector-checked-outline-color: var(
+		--color-primary
+	);
+	--denhaag-step-marker-connector-warning-outline-color: var(
+		--color-orange-400
+	);
+	--denhaag-step-marker-connector-error-outline-color: var( --color-danger );
+}
+
+/* Overrides: Extend the height of the connector. NLDS doesn't account for meta yet.  */
+.denhaag-process-steps__step {
+	.denhaag-step-marker__connector--main-to-main {
+		height: calc( 100% + var( --denhaag-process-steps-step-distance ) );
+		top: 0;
+	}
+
+	.denhaag-step-marker__connector--main-to-nested {
+		height: calc(
+			100% + var( --denhaag-process-steps-step-distance ) +
+				var( --denhaag-process-steps-sub-step-distance )
+		);
+	}
+
+	.denhaag-step-marker__connector--nested-to-nested {
+		height: calc( 100% + var( --denhaag-process-steps-step-distance ) );
+		top: 0;
+	}
+
+	.denhaag-step-marker__connector--nested-to-main {
+		height: calc(
+			100% + var( --denhaag-process-steps-step-distance ) +
+				var( --denhaag-process-steps-sub-step-distance )
+		);
+	}
+}

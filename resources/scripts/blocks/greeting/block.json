@@ -1,0 +1,17 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "theme/greeting",
+	"title": "Begroeting",
+	"category": "theme",
+	"description": "Toon een begroeting dat automatisch de huidige tijd van de dag weergeeft. Toont ook de naam van de gebruiker indien beschikbaar.",
+	"version": "0.0.1",
+	"textdomain": "sage",
+	"attributes": {},
+	"supports": {
+		"html": false,
+		"multiple": false,
+		"reusable": false
+	},
+	"editorScript": "file:./index.js"
+}

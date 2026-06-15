@@ -1,0 +1,15 @@
+.wp-block-social-links {
+	@apply pl-0;
+}
+
+.wp-block-social-link {
+	@apply text-primary! rounded-(--social-link-radius)! bg-white!;
+
+	@variant hocus {
+		@apply bg-primary! transform-none! text-white! transition-all;
+	}
+}
+
+.wp-block-social-link-anchor {
+	@apply p-(--social-link-anchor-padding)!;
+}

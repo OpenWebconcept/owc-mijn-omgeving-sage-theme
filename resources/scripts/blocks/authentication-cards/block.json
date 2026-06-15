@@ -1,0 +1,52 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "theme/authentication-cards",
+	"title": "Authenticatie kaarten",
+	"category": "theme",
+	"description": "Toon een kaarten voor gebruikersauthenticatie (DigiD, eHerkenning en eIDAS).",
+	"version": "0.0.1",
+	"keywords": [
+		"login",
+		"inloggen",
+		"authentication",
+		"authenticatie",
+		"digid",
+		"eherkenning",
+		"eidas",
+		"kaarten"
+	],
+	"textdomain": "sage",
+	"attributes": {
+		"displayDigid": {
+			"type": "boolean",
+			"default": true
+		},
+		"displayEherkenning": {
+			"type": "boolean",
+			"default": true
+		},
+		"displayEidas": {
+			"type": "boolean",
+			"default": true
+		},
+		"align": {
+			"type": "string",
+			"default": "wide"
+		},
+		"provider": {
+			"type": "string",
+			"default": "owc-signicat-openid"
+		}
+	},
+	"supports": {
+		"align": [ "wide" ],
+		"html": false,
+		"multiple": false,
+		"reusable": false,
+		"spacing": {
+			"margin": true
+		}
+	},
+	"editorScript": "file:./index.js"
+}
