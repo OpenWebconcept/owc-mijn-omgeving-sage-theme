@@ -99,23 +99,20 @@ figcaption {
 }
 
 /* All focusable elements */
-input[type='radio']:focus + label,
-input[type='checkbox']:focus + label,
-input:focus:not( [type='radio'], [type='checkbox'] ),
-textarea:focus,
-a:focus,
-button:focus,
-select:focus,
-area:focus,
-iframe:focus,
-details:focus {
-	outline-width: 0;
-
-	.js-user-is-tabbing & {
-		animation: focus 0.1s linear both;
-		outline-color: -webkit-focus-ring-color;
-		outline-style: auto;
-	}
+input[type='radio']:focus-visible + label,
+input[type='checkbox']:focus-visible + label,
+input:focus-visible:not( [type='radio'], [type='checkbox'] ),
+textarea:focus-visible,
+a:focus-visible,
+button:focus-visible,
+select:focus-visible,
+area:focus-visible,
+iframe:focus-visible,
+details:focus-visible {
+	animation: focus 0.1s linear both;
+	outline: 2px solid Highlight; /* Firefox + fallback */
+	outline: 2px solid -webkit-focus-ring-color; /* Chrome/Safari/Edge */
+	outline-offset: 4px;
 }
 
 @keyframes focus {

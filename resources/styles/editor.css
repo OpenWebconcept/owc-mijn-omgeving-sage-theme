@@ -12,10 +12,12 @@
 	/* Base */
 	@import './base/base';
 
+	/* Vendor */
+	@import './vendor/gravity-forms';
+
 	/* Components */
 	@import './components/cards';
 	@import './components/forms';
-	@import './components/gravity-forms';
 
 	/* Elements */
 	@import './elements/lists';
@@ -36,10 +38,6 @@
 	@import './blocks/spacer/editor';
 	@import './blocks/table/editor';
 	@import './blocks/table/shared';
-	@import './blocks/tabs/shared';
-	@import './blocks/tabs/editor';
-	@import './blocks/timeline/shared';
-	@import './blocks/timeline/editor';
 	@import './blocks/wp/shared';
 
 	/* Layouts */

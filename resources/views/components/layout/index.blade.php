@@ -24,7 +24,7 @@
 			@if (view()->exists('emergency-notification::banner'))
 				@include('emergency-notification::banner')
 			@endif
-			@include('partials.breadcrumbs')
+			<x-breadcrumbs />
 			{{ $slot }}
 		</main>
 

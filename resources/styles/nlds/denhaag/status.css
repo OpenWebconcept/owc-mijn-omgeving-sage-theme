@@ -80,7 +80,6 @@
 	/* Step Marker Typography */
 	--denhaag-step-marker-font-family: var( --font-sans );
 	--denhaag-step-marker-font-size: var( --text-sm );
-	--denhaag-step-marker-font-weight: 400;
 
 	/* Step Marker Default State */
 	--denhaag-step-marker-default-background-color: var( --color-gray-300 );
@@ -142,8 +141,8 @@
 /* Overrides: Extend the height of the connector. NLDS doesn't account for meta yet.  */
 .denhaag-process-steps__step {
 	.denhaag-step-marker__connector--main-to-main {
-		height: calc( 100% + var( --denhaag-process-steps-step-distance ) );
 		top: 0;
+		height: calc( 100% + var( --denhaag-process-steps-step-distance ) );
 	}
 
 	.denhaag-step-marker__connector--main-to-nested {
@@ -154,8 +153,8 @@
 	}
 
 	.denhaag-step-marker__connector--nested-to-nested {
-		height: calc( 100% + var( --denhaag-process-steps-step-distance ) );
 		top: 0;
+		height: calc( 100% + var( --denhaag-process-steps-step-distance ) );
 	}
 
 	.denhaag-step-marker__connector--nested-to-main {

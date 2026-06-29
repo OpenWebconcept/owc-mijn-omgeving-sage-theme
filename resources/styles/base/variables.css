@@ -80,7 +80,7 @@
 	--wp-admin-bar-height: var( --wp-admin--admin-bar--height, 0px );
 
 	/* Top bar */
-	--combined-bar-height: var( --nav-bar-height ); /* Altered in top-bar.css */
+	--combined-bar-height: var( --nav-bar-height );
 	--top-bar-height: 35px;
 
 	/* Site logo */
@@ -100,6 +100,14 @@
 	--nav-menu-item-before-bg-color: var( --color-primary );
 	--nav-menu-item-before-height: 0.25rem;
 	--nav-menu-item-before-bottom: 0;
+
+	&:has( .has-top-bar ) {
+		@variant lg {
+			--combined-bar-height: calc(
+				var( --nav-bar-height ) + var( --top-bar-height )
+			);
+		}
+	}
 
 	/* Breadcrumbs */
 	--breadcrumb-item-color: var( --color-primary );

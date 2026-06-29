@@ -1,0 +1,87 @@
+@php
+	$primaryNavigation = \Log1x\Navi\Navi::make()->build('primary_navigation');
+	$topBarNavigation = \Log1x\Navi\Navi::make()->build('top_bar_navigation');
+@endphp
+
+@props([
+    'dialogId' => 'js-brave-mobile-menu',
+    'label' => __('Menu', 'sage'),
+])
+
+<x-brave::dialog.trigger :dialogId="$dialogId" class="hamburger flex h-[46px] flex-col gap-y-2 lg:hidden">
+	<span class="block h-0.5 w-8 rounded-full bg-black transition-all duration-300 ease-in-out"></span>
+	<span class="block h-0.5 w-6 rounded-full bg-black transition-all duration-300 ease-in-out"></span>
+	<span class="block h-0.5 w-4 rounded-full bg-black transition-all duration-300 ease-in-out"></span>
+	<span class="mt-auto text-xs leading-none">{{ $label }}</span>
+</x-brave::dialog.trigger>
+
+<x-brave-dialog :id="$dialogId" :ariaLabel="$label" @class([
+	'mobile-menu transition-discrete top-0 bottom-0 left-10 right-0 h-full max-h-full w-auto max-w-full transform-[translateX(100%)] bg-white opacity-0 transition-all duration-500',
+	'backdrop:transition-discrete backdrop:pointer-events-none backdrop:bg-black/0 backdrop:transition-all backdrop:duration-500',
+	'starting:open:transform-[translateX(100%)] starting:open:opacity-0 starting:open:backdrop:bg-black/0',
+	'open:transform-[translateX(0)] open:opacity-100 open:backdrop:bg-black/50',
+])>
+	<div class="flex h-full flex-col">
+		<div class="z-1 sticky top-0 flex items-center justify-between gap-2 border-b border-gray-100 bg-white px-6 py-4">
+			<h2 class="mb-0 text-base font-normal">{{ $label }}</h2>
+			<x-brave::dialog.trigger :dialogId="$dialogId" class="leading-0 size-11.5 -m-2 flex items-center justify-center text-2xl">
+				<i class="fa-light fa-xmark" aria-hidden="true"></i>
+				<span class="sr-only">Sluit menu</span>
+			</x-brave::dialog.trigger>
+		</div>
+
+		@if (!is_null($userModel) && $userModel->isLoggedIn())
+			<x-menu.sidebar class="block! mb-6 mt-4 px-6" />
+		@elseif (config('theme.login_menu.show_login_button_mobile', true))
+			<a href="{{ home_url() }}" class="is-button mb-4 after:content-none">
+				Inloggen
+			</a>
+		@endif
+
+		<x-brave::nav class="p-6" aria-label="{{ __('Mobiele navigatie', 'sage') }}">
+			@if ($primaryNavigation->isNotEmpty())
+				<x-brave::nav.list class="mb-6 list-none pl-0">
+					@foreach ($primaryNavigation->all() as $item)
+						<x-brave::nav.item class="group">
+							<x-brave::nav.link :item="$item" class="block py-3 text-black no-underline focus:text-inherit"
+								activeClass="text-primary font-bold">
+								{!! $item->label !!}
+								@if ($item->children)
+									<i class="fa-light fa-chevron-down group-has-aria-expanded:rotate-180 px-1 transition-all"></i>
+								@endif
+							</x-brave::nav.link>
+							@if ($item->children)
+								<x-brave::nav.dropdown @class([
+									'mb-2 hidden px-3 list-none pl-0',
+									'group-has-aria-expanded:block',
+								])>
+									@foreach ($item->children as $child)
+										<x-brave::nav.item>
+											<x-brave::nav.link :item="$child" class="block py-2 text-gray-700 no-underline"
+												activeClass="text-primary">
+												{!! $child->label !!}
+											</x-brave::nav.link>
+										</x-brave::nav.item>
+									@endforeach
+								</x-brave::nav.dropdown>
+							@endif
+						</x-brave::nav.item>
+					@endforeach
+				</x-brave::nav.list>
+			@endif
+
+			@if ($topBarNavigation->isNotEmpty())
+				<x-brave::nav.list class="grid list-none pl-0">
+					@foreach ($topBarNavigation->all() as $item)
+						<x-brave::nav.item>
+							<x-brave::nav.link :item="$item" class="block py-2 text-sm text-gray-700 no-underline"
+								activeClass="text-primary">
+								{!! $item->label !!}
+							</x-brave::nav.link>
+						</x-brave::nav.item>
+					@endforeach
+				</x-brave::nav.list>
+			@endif
+		</x-brave::nav>
+	</div>
+</x-brave-dialog>

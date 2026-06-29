@@ -6,7 +6,7 @@
 
 <x-layout.sidebar-menu-main>
 	<x-slot:main>
-		@if (!$postData->hasTitle() && $postData->title() !== 'Zaak')
+		@if ($postData->shouldShowTitle() && $postData->title() !== 'Zaak')
 			<h1>{!! $postData->title() !!}</h1>
 		@endif
 

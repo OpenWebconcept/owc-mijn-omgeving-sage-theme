@@ -5,22 +5,21 @@
 @import './base/variables';
 @import './base/utilities';
 
+/* Vendor */
+@import './vendor/gravity-forms-personal-data-table';
+@import './vendor/gravity-forms-company-data-table';
+@import './vendor/gravity-forms-custom-fields';
+@import './vendor/gravity-forms';
+@import './vendor/owc-signicat-openid';
+@import './vendor/owc-anoigo-openid';
+@import './vendor/owc-openkaarten';
+
 /* Components */
 @import './components/accordion';
 @import './components/cards';
 @import './components/cookie-yes';
 @import './components/footer';
 @import './components/forms';
-@import './components/gravity-forms-personal-data-table';
-@import './components/gravity-forms-company-data-table';
-@import './components/gravity-forms-custom-fields';
-@import './components/gravity-forms';
-@import './components/hamburger';
-@import './components/mobile-menu';
-@import './components/owc-signicat-openid';
-@import './components/owc-anoigo-openid';
-@import './components/owc-openkaarten';
-@import './components/top-bar';
 
 /* Elements */
 @import './elements/lists';
@@ -38,8 +37,6 @@
 @import './blocks/quote/shared';
 @import './blocks/social-link/shared';
 @import './blocks/table/shared';
-@import './blocks/tabs/shared';
-@import './blocks/timeline/shared';
 @import './blocks/wp/shared';
 
 /* Layouts */
