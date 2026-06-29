@@ -11,7 +11,7 @@ Starter theme for Dutch government "Mijn Omgeving" (citizen portal) projects. Bu
 | PHP         | >= 8.2     |
 | WordPress   | 6.9.\*     |
 | Node        | >= 22.12.0 |
-| pnpm        | >= 10.17.1 |
+| pnpm        | >= 10.34.4 |
 | Composer    | >= 2       |
 
 ## Setup
@@ -122,7 +122,7 @@ pnpm run build
 Watch for changes during development (themes and blocks in parallel):
 
 ```bash
-pnpm run watch:themes & pnpm run watch:blocks"
+pnpm run watch"
 ```
 
 ### 7. Activate the theme
@@ -147,7 +147,7 @@ owc-mijn-omgeving/
 ├── app/               # PHP — Providers, Services, Hooks, Blocks, etc.
 ├── config/            # Laravel/Acorn config files
 ├── public/
-│   └── build/         # Compiled assets (committed, no build step needed)
+│   └── build/         # Compiled assets
 ├── resources/
 │   ├── fonts/
 │   ├── images/
@@ -193,6 +193,18 @@ After importing, log in to the WordPress admin with the demo account:
 
 All PHP classes live under `app/` and use the `OWC\MijnOmgeving\` PSR-4 namespace. Register new service providers in `config/app.php` or `composer.json`'s `extra.acorn.providers`.
 
+### Frontend dependencies
+
+This theme has no `package.json`. All npm dependencies live in the Brave root `package.json`, since Brave owns the asset build.
+
+**Dependency drift** is avoided by convention: Brave keeps frontend packages backwards-compatible and always at the latest version, so any current installation works without version negotiation.
+
+If the theme ever needs a package Brave doesn't already provide, add it to the Brave root `package.json` and document it here:
+
+```bash
+pnpm install <package>
+```
+
 ### Tailwind CSS
 
 Styles use [Tailwind CSS v4](https://tailwindcss.com/). The main entry points are:
@@ -200,43 +212,16 @@ Styles use [Tailwind CSS v4](https://tailwindcss.com/). The main entry points ar
 - `resources/styles/frontend.css` — front-end styles
 - `resources/styles/editor.css` — Gutenberg editor styles
 
-### NL Design System — Den Haag components
+### NL Design System (NLDS)
 
-The theme uses CSS components from [`@gemeente-denhaag/side-navigation`](https://nl-design-system.github.io/denhaag/) (declared as a `devDependency` in the root `package.json` because it is consumed at build time only).
+This theme uses NLDS only **partially** — in both which components are used and how they are integrated.
 
-The following packages are direct runtime dependencies and must be declared in the root `package.json` `dependencies`:
+Where things live:
 
-| Package                              | Purpose                                                 |
-| ------------------------------------ | ------------------------------------------------------- |
-| `@yardinternet/a11y-cookie-yes`      | Accessibility integration for Cookie Yes consent banner |
-| `@yardinternet/brave-frontend-kit`   | Shared frontend utilities from the Brave platform       |
-| `@yardinternet/gutenberg-components` | Shared Gutenberg block components                       |
-| `accordion-js`                       | Powers the `Accordion` frontend component               |
-| `body-scroll-lock`                   | Locks body scroll when a `Dialog` is open               |
-| `focus-trap`                         | Traps keyboard focus inside an open `Dialog`            |
+- **Components** — in the [`owc-mijn-services`](https://github.com/OpenWebconcept/plugin-owc-mijn-services) plugin at `src/Views/partials/nlds/denhaag/` (`status`, `description-list`, `card`, `file`). The plugin loads the upstream denhaag React components and their CSS stylesheets in its block JS (e.g. `resources/blocks/zaak/components/`); the Blade partials emit placeholder elements that the JS mounts onto. New NLDS components go there too.
+- **Design-token variables** — in this theme, under `resources/styles/nlds/` (`denhaag/`, `nl/`), imported from `resources/styles/frontend.css`. The theme loads only the token overrides, not the component CSS (except side-navigation — see below).
 
-These packages are consumed by `resources/scripts/frontend/components/`. Because pnpm only makes explicitly-declared dependencies available for imports, omitting them from the root `package.json` breaks the Vite build with an unresolvable-import error.
-
-The following `devDependencies` must also be present in the root `package.json` for linting and the Vite build to work:
-
-| Package                          | Purpose                        |
-| -------------------------------- | ------------------------------ |
-| `@yardinternet/eslint-config`    | Shared ESLint configuration    |
-| `@yardinternet/prettier-config`  | Shared Prettier configuration  |
-| `@yardinternet/stylelint-config` | Shared Stylelint configuration |
-| `@yardinternet/vite-config`      | Shared Vite configuration      |
-| `tailwindcss`                    | Tailwind CSS v4                |
-| `vite`                           | Vite bundler                   |
-
-The package's stylesheet is imported in `resources/styles/nlds/denhaag/side-navigation.css`:
-
-```css
-@import '@gemeente-denhaag/side-navigation/index.css';
-```
-
-Design tokens are overridden directly in that file via CSS custom properties to match the project's design. If you need to change the look of the side navigation, edit those `--denhaag-side-navigation-*` variables there rather than overriding the component output.
-
-To upgrade the package, update the version in the root `package.json` and run `pnpm install` from the project root.
+> **Side-navigation is the exception.** It renders server-side from a WordPress nav menu with ACF icons and an auth-aware logout item, so its markup is hand-rolled Blade in this theme at `resources/views/components/nlds/denhaag/side-navigation/` and only its upstream CSS is imported (here, not the plugin).
 
 ### ACF field groups
 
