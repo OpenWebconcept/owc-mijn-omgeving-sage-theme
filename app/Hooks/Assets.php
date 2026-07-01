@@ -13,12 +13,12 @@ class Assets
 	#[Action('wp_head', 99)]
 	public function registerFrontendAssets(): void
 	{
-		Vite::useHotFile(get_parent_theme_file_path('public/hot'));
+		Vite::useHotFile($this->hotFile());
 
-		echo Vite::withEntryPoints([
-			'web/app/themes/' . get_stylesheet() . '/resources/styles/frontend.css',
-			'web/app/themes/' . get_stylesheet() . '/resources/scripts/frontend/frontend.js',
-		])->toHtml();
+		echo Vite::withEntryPoints(array_map($this->viteEntry(...), [
+			'resources/styles/frontend.css',
+			'resources/scripts/frontend/frontend.js',
+		]))->toHtml();
 	}
 
 	#[Action('admin_head')]
@@ -36,11 +36,11 @@ class Assets
 			}
 		}
 
-		Vite::useHotFile(get_parent_theme_file_path('public/hot'));
+		Vite::useHotFile($this->hotFile());
 
-		echo Vite::withEntryPoints([
-			'web/app/themes/'. get_stylesheet() . '/resources/scripts/editor/editor.js',
-		])->toHtml();
+		echo Vite::withEntryPoints(array_map($this->viteEntry(...), [
+			'resources/scripts/editor/editor.js',
+		]))->toHtml();
 	}
 
 	/**
@@ -49,7 +49,7 @@ class Assets
 	#[Filter('block_editor_settings_all')]
 	public function injectEditorStyles($settings)
 	{
-		$style = Vite::asset('web/app/themes/'. get_stylesheet() . '/resources/styles/editor.css');
+		$style = Vite::asset($this->viteEntry('resources/styles/editor.css'));
 
 		$settings['styles'][] = [
 			'css' => "@import url('{$style}')",
@@ -81,5 +81,48 @@ class Assets
 	public function addWhitelistedPrefixes(array $prefixes): array
 	{
 		return array_merge($prefixes, ['owc']);
+	}
+
+	/**
+	 * Locate the Vite hot file. Theme-root writes it here; brave-root writes it
+	 * to sage's public dir. TODO: point the brave-root dev server at this theme.
+	 */
+	private function hotFile(): string
+	{
+		$themeHot = get_theme_file_path('public/hot');
+
+		if (file_exists($themeHot)) {
+			return $themeHot;
+		}
+
+		return get_theme_root() . '/sage/public/hot';
+	}
+
+	/**
+	 * Prefix a theme-relative entry with the theme path when the manifest was
+	 * built brave-root (keys under web/app/themes/<theme>/), else return as-is.
+	 */
+	private function viteEntry(string $path): string
+	{
+		static $prefix;
+
+		if (! isset($prefix)) {
+			$manifestPath = get_theme_file_path('public/build/manifest.json');
+			$manifest = is_readable($manifestPath)
+				? (array) json_decode((string) file_get_contents($manifestPath), true)
+				: [];
+
+			$prefix = '';
+
+			foreach (array_keys($manifest) as $key) {
+				if (str_starts_with($key, 'web/app/themes/')) {
+					$prefix = 'web/app/themes/' . get_stylesheet() . '/';
+
+					break;
+				}
+			}
+		}
+
+		return $prefix . $path;
 	}
 }
