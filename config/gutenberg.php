@@ -7,14 +7,8 @@ return [
 	'allowedBlocks' => [
 		'collapse',
 		'collapse-item',
-		'counting-number',
-		'icon',
 		'iconlist',
 		'iconlist-item',
-		'tabs',
-		'tabs-item',
-		'timeline',
-		'timeline-item',
 	],
 
 	'allowedCoreBlocks' => [
