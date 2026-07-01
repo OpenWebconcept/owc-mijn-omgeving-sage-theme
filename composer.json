@@ -20,7 +20,25 @@
 	],
 	"require": {
 		"php": ">=8.2",
-		"composer/installers": "^2.2"
+		"composer/installers": "^2.2",
+		"roots/acorn": "^4.0",
+		"log1x/navi": "^3.1",
+		"log1x/poet": "^2.0",
+		"spatie/laravel-ignition": "^2.0",
+		"yard/brave-components": "^1.0",
+		"yard/brave-csp": "^1.0",
+		"yard/brave-hooks": "^2.7",
+		"yard/config-expander": "^1.5",
+		"yard/data": "^1.0",
+		"yard/multisite-url-fixer": "^1.0",
+		"yard/nutshell": "^2.0",
+		"yard/query-block": "^1.0",
+		"yard/webmanifest": "^1.0",
+		"yard/wp-block-registrar": "^1.0",
+		"yard/wp-cli-bundle": "^2.12",
+		"yard/wp-database": "^1.0",
+		"yard/wp-hook-registrar": "^2.0",
+		"yard/wp-user-roles": "^2.0"
 	},
 	"autoload": {
 		"psr-4": {

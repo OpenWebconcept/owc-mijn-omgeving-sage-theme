@@ -104,13 +104,23 @@ Config::define('DISABLED_PLUGINS', [
 
 ### 5. Install frontend dependencies
 
-This theme ships its own `package.json`. From the theme directory:
+The `@yardinternet/*` packages are published to GitHub Packages. The committed `.npmrc` maps the scope to that registry, but GitHub Packages requires a token even to read. Provide your own:
 
-```bash
-cd web/app/themes/owc-mijn-omgeving-sage-theme
-nvm use
-pnpm install
-```
+1. Create a GitHub [token](https://github.com/settings/tokens) with the `read:packages` scope.
+2. Add it in the place of `${GITHUB_TOKEN}`, or export it (add to your shell profile to persist):
+
+   ```bash
+   export GITHUB_TOKEN=ghp_your_token_here
+   ```
+
+3. Install:
+
+   ```bash
+   nvm use
+   pnpm install
+   ```
+
+`.npmrc` references `${GITHUB_TOKEN}` from the environment — never commit a token into it.
 
 ### 6. Configure the dev server
 
