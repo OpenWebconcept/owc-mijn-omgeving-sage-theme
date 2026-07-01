@@ -104,28 +104,34 @@ Config::define('DISABLED_PLUGINS', [
 
 ### 5. Install frontend dependencies
 
-All npm dependencies are managed by Brave's root `package.json`. From the project root:
+This theme ships its own `package.json`. From the theme directory:
 
 ```bash
+cd web/app/themes/owc-mijn-omgeving-sage-theme
 nvm use
 pnpm install
 ```
 
-### 6. Build assets
+### 6. Configure the dev server
 
-Builds both themes and blocks:
+Copy the env template and set `WP_HOME` to your local site URL.
+
+```bash
+cp .env.example .env
+```
+
+### 7. Build assets
+
+Build once, after that watch during development (themes and blocks in parallel):
 
 ```bash
 pnpm run build
+pnpm run watch
 ```
 
-Watch for changes during development (themes and blocks in parallel):
+See [Asset build](#asset-build) for running from a Brave project root.
 
-```bash
-pnpm run watch"
-```
-
-### 7. Activate the theme
+### 8. Activate the theme
 
 **Via WP-CLI:**
 
@@ -193,17 +199,15 @@ After importing, log in to the WordPress admin with the demo account:
 
 All PHP classes live under `app/` and use the `OWC\MijnOmgeving\` PSR-4 namespace. Register new service providers in `config/app.php` or `composer.json`'s `extra.acorn.providers`.
 
-### Frontend dependencies
+### Asset build
 
-This theme has no `package.json`. All npm dependencies live in the Brave root `package.json`, since Brave owns the asset build.
-
-**Dependency drift** is avoided by convention: Brave keeps frontend packages backwards-compatible and always at the latest version, so any current installation works without version negotiation.
-
-If the theme ever needs a package Brave doesn't already provide, add it to the Brave root `package.json` and document it here:
+The theme carries its own `package.json`, so you run the asset build from the theme directory:
 
 ```bash
-pnpm install <package>
+pnpm run build   # or: pnpm run watch
 ```
+
+In a Brave context you can instead run the same scripts from the project root, which builds every theme at once. The tooling auto-detects where it runs — no configuration needed.
 
 ### Tailwind CSS
 
@@ -229,7 +233,7 @@ Field groups are stored as JSON in `acf-json/` and sync automatically with ACF P
 
 ## Linting & formatting
 
-Run all linting and formatting from the Brave project root:
+Run all linting and formatting from the theme directory (or from a Brave project root to cover every theme):
 
 ```bash
 # JavaScript
