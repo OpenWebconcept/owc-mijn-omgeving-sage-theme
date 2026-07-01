@@ -49,6 +49,8 @@ class Assets
 	#[Filter('block_editor_settings_all')]
 	public function injectEditorStyles($settings)
 	{
+		Vite::useHotFile(get_parent_theme_file_path('public/hot'));
+
 		$style = Vite::asset($this->viteEntry('resources/styles/editor.css'));
 
 		$settings['styles'][] = [
