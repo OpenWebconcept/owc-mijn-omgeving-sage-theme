@@ -8,6 +8,7 @@ import {
 	Accordion,
 	BraveNavigationManager,
 	BraveDialogManager,
+	FocusStyle,
 	WebShareApi,
 } from '@yardinternet/brave-frontend-kit';
 
@@ -26,6 +27,7 @@ window.addEventListener( 'DOMContentLoaded', () => {
 	new Accordion();
 	new BraveDialogManager();
 	new BraveNavigationManager();
+	new FocusStyle();
 	new WebShareApi();
 
 	Openkaarten();
