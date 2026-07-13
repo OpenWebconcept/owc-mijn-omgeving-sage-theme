@@ -23,6 +23,10 @@
 		@apply border-gray-300!;
 	}
 
+	.gfield_required {
+		@apply text-danger;
+	}
+
 	/* Overwrite the "Veldgrootte" option. It's wrong on many of the imported forms. */
 	.gfield {
 		input.small,
@@ -59,15 +63,14 @@
 	}
 
 	> .gform_validation_errors {
-		@apply rounded-theme border-danger mb-8 py-6 shadow-none md:mb-10;
-		--outline-color: -webkit-focus-ring-color;
+		@apply mb-8 rounded-none border-0 border-l-6 border-danger bg-red-50 py-6 shadow-none md:mb-10;
 
 		&:focus {
-			@apply outline-(--outline-color);
+			@apply outline-none;
 		}
 
 		> .gform_submission_error {
-			@apply text-danger text-lg font-bold;
+			@apply text-lg font-bold text-danger;
 		}
 
 		> ol {
@@ -78,9 +81,14 @@
 			}
 
 			a {
-				@apply text-danger text-sm;
+				@apply text-sm text-danger no-underline;
+				--outline-color: -webkit-focus-ring-color;
 
-				&:focus {
+				&:hover {
+					@apply underline;
+				}
+
+				&:focus-visible {
 					@apply outline-(--outline-color);
 				}
 			}
@@ -88,7 +96,13 @@
 	}
 
 	.gfield_validation_message {
-		@apply mt-2 rounded-(--input-radius) px-3 py-2 text-sm leading-[1.5];
+		@apply relative mt-2 ml-1 border-none bg-transparent p-0 pl-5 text-sm leading-[1.5] text-danger;
+
+		&::before {
+			@apply fontawesome absolute top-0 left-0 text-xs text-danger;
+			--fa-icon: '\f06a';
+			--fa-weight: 700;
+		}
 	}
 
 	/* Progress bar */
@@ -144,7 +158,7 @@
 	}
 
 	.gform_delete_file {
-		@apply rounded-theme ml-auto flex size-8 items-center justify-center bg-gray-200 transition;
+		@apply ml-auto flex size-8 items-center justify-center rounded-theme bg-gray-200 transition;
 
 		&:hover {
 			@apply bg-gray-300;
@@ -215,7 +229,7 @@
 
 	/* Save and continue */
 	.form_saved_message {
-		@apply rounded-theme normalize-child-margin my-6 bg-(--box-bg-color) p-6 md:my-8 md:p-8;
+		@apply normalize-child-margin my-6 rounded-theme bg-(--box-bg-color) p-6 md:my-8 md:p-8;
 
 		.gform-footer {
 			@apply mt-0 border-0 pb-0;
@@ -233,14 +247,16 @@
 	}
 
 	.gfield_error .gfield_repeater_cell label,
-	.gfield_error label,
+	.gfield_error .gfield_label,
 	.gfield_error legend,
-	.gfield_validation_message,
-	.validation_message,
 	[aria-invalid='true'] + label,
 	label + [aria-invalid='true'],
 	[aria-invalid='true'] {
-		@apply text-danger border-danger!;
+		@apply border-danger! text-danger;
+	}
+
+	.gfield_error label {
+		@apply text-black;
 	}
 
 	input[aria-invalid='true'] {
