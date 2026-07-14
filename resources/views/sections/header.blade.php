@@ -9,4 +9,6 @@
 		<x-header.login-menu />
 		<x-header.mobile-menu />
 	</div>
+
+	<div class="js-a11y-toolbar"></div>
 </header>

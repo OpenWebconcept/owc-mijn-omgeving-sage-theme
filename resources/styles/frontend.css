@@ -15,6 +15,7 @@
 @import './vendor/owc-openkaarten';
 
 /* Components */
+@import './components/a11y-toolbar';
 @import './components/accordion';
 @import './components/cards';
 @import './components/cookie-yes';

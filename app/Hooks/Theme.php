@@ -63,4 +63,23 @@ class Theme extends \Yard\Brave\Hooks\Theme
 	{
 		return false;
 	}
+
+	#[Action('wp_head')]
+	public function addGlobalsToFrontendWindowObject(): void
+	{
+		wp_print_inline_script_tag(
+			'window.theme = Object.assign({}, window.theme || {}, ' . wp_json_encode([
+				'is_deepl_enabled' => $this->isDeepLEnabled(),
+			], JSON_UNESCAPED_UNICODE) . ');'
+		);
+	}
+
+	private function isDeepLEnabled(): bool
+	{
+		if (! function_exists('is_plugin_active')) {
+			require_once ABSPATH . 'wp-admin/includes/plugin.php';
+		}
+
+		return is_plugin_active('yard-deepl/yard-deepl.php');
+	}
 }
