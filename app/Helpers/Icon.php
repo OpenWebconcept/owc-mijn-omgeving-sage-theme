@@ -19,15 +19,15 @@ class Icon
             return '';
         }
 
-        $svg = file_get_contents($path);
+        $svg = trim((string) file_get_contents($path));
 
-        if (false === $svg || false === strpos($svg, '<svg')) {
+        if (! str_starts_with($svg, '<svg')) {
             return '';
         }
 
         $attributes = sprintf(' aria-hidden="true" focusable="false" class="%s"', esc_attr($class));
 
-        if (strpos($svg, 'class="') !== false) {
+        if (str_contains($svg, 'class="')) {
             $attributes = ' aria-hidden="true" focusable="false"';
         }
 

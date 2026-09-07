@@ -66,9 +66,9 @@ class Assets
 	#[Action('enqueue_block_assets')]
 	public function registerBlockAssets(): void
 	{
-		$fontawesomeKit = config('app.fontawesome.url');
+		$fontawesomeKit = trim((string) config('app.fontawesome.url', ''));
 
-		if (! empty($fontawesomeKit)) {
+		if ('' !== $fontawesomeKit) {
 			wp_enqueue_script('fontawesome', $fontawesomeKit, [], null, true);
 		}
 
