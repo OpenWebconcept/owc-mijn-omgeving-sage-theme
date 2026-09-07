@@ -7,7 +7,6 @@
 		<li>
 			<hr class="denhaag-divider text-gray-300" role="presentation">
 		</li>
-		<x-nlds.denhaag.side-navigation.item :href="$logoutUrl" title="Uitloggen"
-			:iconHtml="\OWC\MijnOmgeving\Helpers\Icon::render('log-out', 'denhaag-icon w-5')" />
+		<x-nlds.denhaag.side-navigation.item :href="$logoutUrl" title="Uitloggen" :iconHtml="\OWC\MijnOmgeving\Helpers\Icon::render('log-out', 'w-5')" />
 	@endif
 </x-nlds.denhaag.side-navigation.list>

@@ -118,6 +118,8 @@
 	--breadcrumbs-bg-color-home: var( --color-primary );
 	--breadcrumbs-height: 52px;
 	--breadcrumbs-height-home: var( --breadcrumbs-height );
+	--breadcrumbs-margin-bottom: 0;
+	--breadcrumbs-margin-bottom-home: --spacing( 12 );
 
 	/* Lists */
 	--list-marker-color: var( --color-primary );
