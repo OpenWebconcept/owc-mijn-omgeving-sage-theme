@@ -25,3 +25,9 @@
 		}
 	}
 }
+
+body.home {
+	--breadcrumbs-bg-color: var( --breadcrumbs-bg-color-home );
+	--breadcrumbs-height: var( --breadcrumbs-height-home );
+	--breadcrumbs-margin-bottom: var( --breadcrumbs-margin-bottom-home );
+}
