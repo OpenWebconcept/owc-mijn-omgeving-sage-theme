@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace OWC\MijnOmgeving\View\Components\Menu;
 
+use OWC\MijnOmgeving\Helpers\Icon;
 use OWC\MijnOmgeving\Helpers\Prefill;
 use Closure;
 use Illuminate\Contracts\View\View;
@@ -115,8 +116,9 @@ class Sidebar extends Component
 		}
 
 		return match ($iconData['type']) {
+			/* Only renders when a Font Awesome kit is configured; see config/app.php. */
 			self::ICON_TYPE_FONTAWESOME => sprintf(
-				'<i class="fa-fw fa-regular  fa-%s"></i>',
+				'<i class="fa-fw fa-regular fa-%s" aria-hidden="true"></i>',
 				$iconData['icon']
 			),
 			self::ICON_TYPE_MUNICIPALITY => $this->getMunicipalityIconHtml($iconData['icon']),
@@ -126,19 +128,10 @@ class Sidebar extends Component
 
 	private function getMunicipalityIconHtml(string $iconName): string
 	{
-		$svgPath = get_template_directory() . "/resources/images/municipality-icons/{$iconName}.svg";
-
-		if (! file_exists($svgPath)) {
-			return '';
-		}
-
-		$svg = file_get_contents($svgPath);
-
-		if (strpos($svg, '<svg') !== false && strpos($svg, 'class="') === false) {
-			$svg = preg_replace('/<svg\b/', '<svg class="denhaag-icon w-5"', $svg, 1);
-		}
-
-		return $svg;
+		return Icon::inline(
+			get_template_directory() . "/resources/images/municipality-icons/{$iconName}.svg",
+			'denhaag-icon w-5'
+		);
 	}
 
 	public function render(): View|Closure|string

@@ -183,7 +183,16 @@ return [
 		// 'ExampleClass' => OWC\MijnOmgeving\Example\ExampleClass::class,
 	])->toArray(),
 
+	/*
+	|--------------------------------------------------------------------------
+	| Font Awesome
+	|--------------------------------------------------------------------------
+	|
+	| Optional. Only needed for the Font Awesome picker blocks and sidebar menu.
+	|
+	*/
+
 	'fontawesome' => [
-		'url' => 'https://kit.fontawesome.com/8442ade4bd.js',
+		'url' => defined('FONTAWESOME_KIT_URL') ? FONTAWESOME_KIT_URL : env('FONTAWESOME_KIT_URL', ''),
 	],
 ];

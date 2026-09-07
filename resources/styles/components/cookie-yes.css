@@ -6,3 +6,11 @@
 .cky-modal {
 	--a11y-cookie-yes-primary-color: var( --color-primary );
 }
+
+.wp-block-embed.is-provider-vimeo [data-cky-tag='video-placeholder']::after {
+	@apply icon;
+	--icon: var( --icon-vimeo );
+	--icon-size: var( --a11y-cookie-yes-vimeo-icon-size );
+	color: var( --a11y-cookie-yes-vimeo-icon-color );
+	content: '';
+}

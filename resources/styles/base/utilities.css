@@ -1,9 +1,10 @@
-@utility fontawesome {
-	@apply pointer-events-none font-(--fa-weight) content-(--fa-icon);
-	--fa-icon: '\f00c';
-	--fa-weight: 300;
-	--fa-font-family: 'Font Awesome 6 Pro';
-	font-family: var( --fa-font-family );
+@utility icon {
+	@apply pointer-events-none content inline-block shrink-0 bg-current align-[-0.125em];
+	--icon: var( --icon-check );
+	--icon-size: 1em;
+	width: var( --icon-size );
+	height: var( --icon-size );
+	mask: var( --icon ) center / contain no-repeat;
 }
 
 @utility content {
@@ -98,9 +99,8 @@
 	@apply inline-block cursor-pointer rounded-(--button-border-radius) border-(length:--button-border-width) border-(--button-bg-color) bg-(--button-bg-color) px-(--button-padding-x) py-(--button-padding-y) text-left font-(family-name:--button-font-family) text-(length:--button-font-size) !leading-snug font-(weight:--button-font-weight) break-words text-(--button-color) no-underline transition-colors select-none;
 
 	&::after {
-		@apply fontawesome ml-3;
-		--fa-icon: var( --button-after-content );
-		--fa-weight: var( --button-after-font-weight, inherit );
+		@apply icon ml-3;
+		--icon: var( --button-after-icon );
 	}
 
 	@variant hocus {
@@ -115,38 +115,37 @@
 @utility add-button-icons {
 	&[href^='#'] {
 		&::after {
-			@apply fontawesome ml-3;
-			--fa-icon: '\f063';
+			@apply icon ml-3;
+			--icon: var( --icon-arrow-down );
 		}
 	}
 
 	&[href^='tel:'] {
 		&::after {
-			@apply fontawesome ml-3;
-			--fa-icon: '\f095';
+			@apply icon ml-3;
+			--icon: var( --icon-phone );
 		}
 	}
 
 	&[href*='api.whatsapp.com'],
 	&[href*='wa.me'] {
 		&::after {
-			@apply fontawesome ml-3;
-			--fa-icon: '\f232';
-			--fa-font-family: 'Font Awesome 6 Brands';
+			@apply icon ml-3;
+			--icon: var( --icon-whatsapp );
 		}
 	}
 
 	&[href^='mailto:'] {
 		&::after {
-			@apply fontawesome ml-3;
-			--fa-icon: '\f0e0';
+			@apply icon ml-3;
+			--icon: var( --icon-mail );
 		}
 	}
 
 	&[target='_blank'] {
 		&::before {
-			@apply fontawesome mr-3;
-			--fa-icon: '\f08e';
+			@apply icon mr-3;
+			--icon: var( --icon-external-link );
 		}
 	}
 }

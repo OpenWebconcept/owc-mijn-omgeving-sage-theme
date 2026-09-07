@@ -66,7 +66,12 @@ class Assets
 	#[Action('enqueue_block_assets')]
 	public function registerBlockAssets(): void
 	{
-		wp_enqueue_script('fontawesome', config('app.fontawesome.url'), [], null, true);
+		$fontawesomeKit = config('app.fontawesome.url');
+
+		if (! empty($fontawesomeKit)) {
+			wp_enqueue_script('fontawesome', $fontawesomeKit, [], null, true);
+		}
+
 		wp_enqueue_style('theme-font', config('theme.font.url'), [], null);
 	}
 

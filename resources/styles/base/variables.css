@@ -57,8 +57,7 @@
 	--link-color-hover: var( --color-primary-800 );
 
 	/* Buttons */
-	--button-after-content: none;
-	--button-after-font-weight: inherit;
+	--button-after-icon: var( --icon-none );
 	--button-border-radius: 5px;
 	--button-border-width: 1px;
 	--button-color: var( --color-white );
@@ -113,7 +112,7 @@
 	--breadcrumb-item-color: var( --color-primary );
 	--breadcrumb-item-color-active: var( --breadcrumb-item-color );
 	--breadcrumb-item-font-size: var( --text-sm );
-	--breadcrumb-item-separator: '\f105';
+	--breadcrumb-item-separator: '\203A';
 	--breadcrumb-item-separator-color: inherit;
 	--breadcrumbs-bg-color: var( --color-gray-100 );
 	--breadcrumbs-bg-color-home: var( --color-primary );

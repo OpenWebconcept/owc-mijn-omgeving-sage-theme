@@ -27,9 +27,18 @@ class Alert extends Component
 	public function alertIcon(): string
 	{
 		return match($this->type) {
-			'success' => 'fa-light fa-check-circle text-green-700',
-			'danger' => 'fa-light fa-times-circle text-red-700',
-			default => 'fa-light fa-exclamation-triangle text-yellow-700',
+			'success' => 'circle-check',
+			'danger' => 'circle-x',
+			default => 'triangle-alert',
+		};
+	}
+
+	public function alertIconColor(): string
+	{
+		return match($this->type) {
+			'success' => 'text-green-700',
+			'danger' => 'text-red-700',
+			default => 'text-yellow-700',
 		};
 	}
 

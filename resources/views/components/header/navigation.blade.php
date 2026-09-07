@@ -11,7 +11,7 @@
 						{{ $item->label }}
 
 						@if ($item->children)
-							<i class="fa-light fa-chevron-down pl-2"></i>
+							<x-icon name="chevron-down" class="ml-2 size-5" />
 						@endif
 
 						<span @class([
@@ -26,10 +26,10 @@
 							@foreach ($item->children as $child)
 								<x-brave::nav.item>
 									<x-brave::nav.link :item="$child"
-										class="group flex items-center px-6 py-3 text-left leading-snug text-inherit no-underline"
+										class="group/nav-link flex items-center px-6 py-3 text-left leading-snug text-inherit no-underline"
 										activeClass="text-primary">
 										{{ $child->label }}
-										<i class="fa-light fa-angle-right ml-auto pl-6 transition-all group-hover:translate-x-1"></i>
+										<x-icon name="chevron-right" class="ml-auto size-5 transition-all group-hover/nav-link:translate-x-1" />
 									</x-brave::nav.link>
 								</x-brave::nav.item>
 							@endforeach

@@ -21,9 +21,14 @@
 .wp-block-yard-collapse-item__header-button {
 	@apply rounded-theme relative mb-0 p-4 pr-12 font-normal text-black transition-all lg:pr-14 lg:pl-6;
 
+	&::before {
+		@apply content rounded-theme absolute top-1/2 right-4 size-8 -translate-y-1/2 bg-transparent transition-colors lg:right-6;
+	}
+
 	&::after {
-		@apply fontawesome text-primary rounded-theme absolute top-1/2 right-4 flex size-8 -translate-y-1/2 items-center justify-center bg-transparent text-sm transition-[transform,background-color,rotate] lg:right-6;
-		--fa-icon: '\f078';
+		@apply icon text-primary absolute top-1/2 right-6 -translate-y-1/2 transition-[color,rotate] lg:right-8;
+		--icon: var( --icon-chevron-down );
+		--icon-size: --spacing( 5 );
 	}
 
 	&:hover,
@@ -31,8 +36,12 @@
 	&[aria-expanded='true'] {
 		@apply bg-primary text-white;
 
+		&::before {
+			@apply bg-white/10;
+		}
+
 		&::after {
-			@apply bg-white/10 text-inherit;
+			@apply text-inherit;
 		}
 	}
 

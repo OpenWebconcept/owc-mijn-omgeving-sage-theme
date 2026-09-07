@@ -99,9 +99,8 @@
 		@apply relative mt-2 ml-1 border-none bg-transparent p-0 pl-5 text-sm leading-[1.5] text-danger;
 
 		&::before {
-			@apply fontawesome absolute top-0 left-0 text-xs text-danger;
-			--fa-icon: '\f06a';
-			--fa-weight: 700;
+			@apply icon absolute top-0 left-0 text-xs text-danger;
+			--icon: var( --icon-circle-alert );
 		}
 	}
 

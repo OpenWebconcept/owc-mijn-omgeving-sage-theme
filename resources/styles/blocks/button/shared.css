@@ -7,8 +7,8 @@
 }
 
 .is-style-back .wp-block-button__link::before {
-	@apply fontawesome mr-3;
-	--fa-icon: '\f060';
+	@apply icon mr-3;
+	--icon: var( --icon-arrow-left );
 }
 
 .wp-block-buttons {

@@ -7,7 +7,7 @@
 		$attributes->get('class'),
 	])
 >
-	<i @class(['text-2xl', $alertIcon()])></i>
+	<x-icon :name="$alertIcon()" :class="'size-6 shrink-0 ' . $alertIconColor()" />
 	<div>
 		{{ $slot }}
 	</div>

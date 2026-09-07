@@ -33,7 +33,7 @@ class SidebarIcons
 					'label' => 'Font Awesome icoon',
 					'name' => self::ACF_FIELD_FONTAWESOME_ICON,
 					'type' => 'text',
-					'instructions' => 'Bijv. "arrow-left". Laat leeg om een gemeente icoon te gebruiken.',
+					'instructions' => 'Bijv. "arrow-left". Werkt alleen als er een Font Awesome kit is ingesteld. Laat leeg om een gemeente icoon te gebruiken.',
 				],
 				[
 					'key' => 'field_67dbede85dc28',
