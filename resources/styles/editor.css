@@ -1,6 +1,7 @@
 @import './base/config';
 
 /* Base */
+@import './base/icons';
 @import './base/variables';
 @import './base/base-editor';
 @import './base/utilities';

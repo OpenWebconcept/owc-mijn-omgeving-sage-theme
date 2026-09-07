@@ -2,8 +2,8 @@
 	@apply text-(length:--breadcrumb-item-font-size);
 
 	&::after {
-		@apply fontawesome mx-2.5 text-sm text-(--breadcrumb-item-separator-color) xl:mx-3;
-		--fa-icon: var( --breadcrumb-item-separator );
+		@apply mx-2.5 text-sm text-(--breadcrumb-item-separator-color) xl:mx-3;
+		content: var( --breadcrumb-item-separator );
 	}
 
 	a {

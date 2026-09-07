@@ -1,0 +1,20 @@
+:root {
+	--icon-none: linear-gradient( transparent, transparent );
+	--icon-a-large-small: url( '@sage/images/icons/a-large-small.svg' );
+	--icon-accessibility: url( '@sage/images/icons/accessibility.svg' );
+	--icon-arrow-down: url( '@sage/images/icons/arrow-down.svg' );
+	--icon-arrow-left: url( '@sage/images/icons/arrow-left.svg' );
+	--icon-arrow-right: url( '@sage/images/icons/arrow-right.svg' );
+	--icon-bell: url( '@sage/images/icons/bell.svg' );
+	--icon-check: url( '@sage/images/icons/check.svg' );
+	--icon-chevron-down: url( '@sage/images/icons/chevron-down.svg' );
+	--icon-chevron-right: url( '@sage/images/icons/chevron-right.svg' );
+	--icon-circle-alert: url( '@sage/images/icons/circle-alert.svg' );
+	--icon-external-link: url( '@sage/images/icons/external-link.svg' );
+	--icon-file-down: url( '@sage/images/icons/file-down.svg' );
+	--icon-mail: url( '@sage/images/icons/mail.svg' );
+	--icon-phone: url( '@sage/images/icons/phone.svg' );
+	--icon-vimeo: url( '@sage/images/icons/vimeo.svg' );
+	--icon-whatsapp: url( '@sage/images/icons/whatsapp.svg' );
+	--icon-x: url( '@sage/images/icons/x.svg' );
+}

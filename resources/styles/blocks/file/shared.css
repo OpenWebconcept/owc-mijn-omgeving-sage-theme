@@ -10,8 +10,8 @@
 		}
 
 		&::after {
-			@apply fontawesome;
-			--fa-icon: '\f33d';
+			@apply icon;
+			--icon: var( --icon-file-down );
 		}
 	}
 

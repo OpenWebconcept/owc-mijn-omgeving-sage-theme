@@ -25,7 +25,7 @@
 		<div class="z-1 sticky top-0 flex items-center justify-between gap-2 border-b border-gray-100 bg-white px-6 py-4">
 			<h2 class="mb-0 text-base font-normal">{{ $label }}</h2>
 			<x-brave::dialog.trigger :dialogId="$dialogId" class="leading-0 size-11.5 -m-2 flex items-center justify-center text-2xl">
-				<i class="fa-light fa-xmark" aria-hidden="true"></i>
+				<x-icon name="x" class="size-6" />
 				<span class="sr-only">Sluit menu</span>
 			</x-brave::dialog.trigger>
 		</div>
@@ -47,7 +47,7 @@
 								activeClass="text-primary font-bold">
 								{!! $item->label !!}
 								@if ($item->children)
-									<i class="fa-light fa-chevron-down group-has-aria-expanded:rotate-180 px-1 transition-all"></i>
+									<x-icon name="chevron-down" class="group-has-aria-expanded:rotate-180 mx-1 inline size-5 transition-all" />
 								@endif
 							</x-brave::nav.link>
 							@if ($item->children)
