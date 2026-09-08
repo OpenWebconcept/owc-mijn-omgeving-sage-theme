@@ -42,6 +42,16 @@ class Alert extends Component
 		};
 	}
 
+	public function alertRole(): string
+	{
+		return 'danger' === $this->type ? 'alert' : 'status';
+	}
+
+	public function alertLive(): string
+	{
+		return 'danger' === $this->type ? 'assertive' : 'polite';
+	}
+
 	public function render(): \Illuminate\View\View
 	{
 		return view('components.alert');
