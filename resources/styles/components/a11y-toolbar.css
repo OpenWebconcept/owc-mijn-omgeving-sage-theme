@@ -1,0 +1,19 @@
+@import '@yardinternet/a11y-toolbar/dist/a11y-toolbar';
+
+.a11y-toolbar__icon--svg {
+	@apply inline-flex items-center justify-center;
+
+	svg {
+		@apply size-[1em];
+	}
+}
+
+.a11y-toolbar__toggle-icon {
+	@apply icon;
+	--icon: var( --icon-accessibility );
+}
+
+.a11y-toolbar__translate-close-button i {
+	@apply icon;
+	--icon: var( --icon-x );
+}

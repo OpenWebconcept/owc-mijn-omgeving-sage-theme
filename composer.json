@@ -57,7 +57,8 @@
 		"installer-name": "owc-mijn-omgeving",
 		"acorn": {
 			"providers": [
-				"OWC\\MijnOmgeving\\Providers\\ThemeServiceProvider"
+				"OWC\\MijnOmgeving\\Providers\\ThemeServiceProvider",
+				"OWC\\MijnOmgeving\\Providers\\GravityFormsServiceProvider"
 			]
 		}
 	},
