@@ -1,5 +1,5 @@
 @utility icon {
-	@apply pointer-events-none content inline-block shrink-0 bg-current align-[-0.125em];
+	@apply content pointer-events-none inline-block shrink-0 bg-current align-[-0.125em];
 	--icon: var( --icon-check );
 	--icon-size: 1em;
 	width: var( --icon-size );
@@ -163,10 +163,10 @@
 }
 
 @utility is-button-outline {
-	@apply !text-primary !border-primary !bg-transparent;
+	@apply !border-primary !bg-transparent !text-primary;
 
 	@variant hocus {
-		@apply !bg-primary !border-primary !text-white;
+		@apply !border-primary !bg-primary !text-white;
 	}
 }
 

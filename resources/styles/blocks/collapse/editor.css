@@ -2,7 +2,7 @@
 	&[data-open='true'] {
 		.wp-block-yard-collapse-item__header,
 		.wp-block-yard-collapse-item__header-input {
-			@apply bg-primary !rounded-b-none text-white;
+			@apply !rounded-b-none bg-primary text-white;
 		}
 
 		.wp-block-yard-collapse-item__header-toggle-button {
@@ -20,5 +20,5 @@
 }
 
 .wp-block-yard-collapse-item__header-toggle-button {
-	@apply !text-primary !bg-white;
+	@apply !bg-white !text-primary;
 }

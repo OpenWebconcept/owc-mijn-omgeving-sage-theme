@@ -18,6 +18,7 @@
 /* Components */
 @import './components/a11y-toolbar';
 @import './components/accordion';
+@import './components/breadcrumbs';
 @import './components/cards';
 @import './components/cookie-yes';
 @import './components/footer';

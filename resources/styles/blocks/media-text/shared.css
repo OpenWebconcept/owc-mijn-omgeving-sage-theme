@@ -88,7 +88,7 @@
 	.wp-block-media-text__media {
 		&,
 		img {
-			@apply rounded-t-theme md:rounded-l-theme rounded-none md:rounded-t-none;
+			@apply rounded-none rounded-t-theme md:rounded-t-none md:rounded-l-theme;
 		}
 	}
 
@@ -100,7 +100,7 @@
 		.wp-block-media-text__media {
 			&,
 			img {
-				@apply md:rounded-r-theme md:rounded-l-none;
+				@apply md:rounded-l-none md:rounded-r-theme;
 			}
 		}
 	}

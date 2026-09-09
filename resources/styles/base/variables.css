@@ -120,6 +120,7 @@
 	--breadcrumbs-height-home: var( --breadcrumbs-height );
 	--breadcrumbs-margin-bottom: 0;
 	--breadcrumbs-margin-bottom-home: --spacing( 12 );
+	--breadcrumbs-indent: 0px;
 
 	/* Lists */
 	--list-marker-color: var( --color-primary );
@@ -175,4 +176,7 @@
 	@variant xl {
 		--card-padding: 1.75rem;
 	}
+
+	/* Sidebar menu main layout */
+	--layout-sidebar-menu-main-padding-y: --spacing( 6 );
 }

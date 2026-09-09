@@ -106,7 +106,7 @@
 	.gfield--type-owc-anoigo-openid-digid,
 	.gfield--type-owc-anoigo-openid-eidas,
 	.gfield--type-owc-anoigo-openid-eherkenning {
-		@apply rounded-theme relative flex flex-col border border-gray-300 p-6 transition-all;
+		@apply relative flex flex-col rounded-theme border border-gray-300 p-6 transition-all;
 
 		&:hover,
 		&:focus-within {

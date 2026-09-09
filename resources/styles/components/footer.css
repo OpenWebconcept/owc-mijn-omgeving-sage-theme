@@ -22,10 +22,10 @@
 		}
 
 		.wp-block-button__link {
-			@apply bg-(--footer-button-bg-color);
+			@apply bg-(--footer-button-bg-color) text-(--footer-button-color,var(--color-white))!;
 
 			@variant hocus {
-				@apply border-(--footer-button-bg-color-hover) bg-(--footer-button-bg-color-hover);
+				@apply border-(--footer-button-bg-color-hover) bg-(--footer-button-bg-color-hover) text-(--footer-button-color-hover,var(--color-white))!;
 			}
 		}
 	}

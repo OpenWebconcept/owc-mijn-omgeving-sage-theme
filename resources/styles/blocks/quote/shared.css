@@ -1,5 +1,5 @@
 .wp-block-quote {
-	@apply border-primary relative my-6 border-l-4 border-solid pl-6 md:my-8;
+	@apply relative my-6 border-l-4 border-solid border-primary pl-6 md:my-8;
 
 	p {
 		@apply static text-lg md:!leading-[1.75];

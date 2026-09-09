@@ -13,7 +13,7 @@
 
 		&,
 		.card-image:not( .card-image-logo ) {
-			@apply md:rounded-l-theme md:rounded-t-none;
+			@apply md:rounded-t-none md:rounded-l-theme;
 		}
 	}
 

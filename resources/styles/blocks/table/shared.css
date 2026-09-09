@@ -11,7 +11,7 @@
 	}
 
 	thead {
-		@apply bg-primary border-none text-white;
+		@apply border-none bg-primary text-white;
 
 		th {
 			@apply min-w-[100px] border-none border-transparent text-left;
@@ -22,7 +22,7 @@
 		@apply align-top;
 
 		td {
-			@apply border-primary-200 border-0;
+			@apply border-0 border-primary-200;
 		}
 
 		tr:not( :first-of-type ) td {
@@ -31,7 +31,7 @@
 	}
 
 	tfoot {
-		@apply border-primary border-t;
+		@apply border-t border-primary;
 
 		td {
 			@apply border-none text-left font-bold;
