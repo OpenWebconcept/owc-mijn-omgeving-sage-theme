@@ -18,16 +18,16 @@
 	--denhaag-file-hover-color: var( --color-primary );
 
 	/* File left section */
-	--denhaag-file-left-background-color: var( --color-gray-100 );
-	--denhaag-file-left-padding-inline-end: 0.5em;
-	--denhaag-file-left-padding-inline-start: 0.5em;
+	--denhaag-file-left-background-color: var( --color-gray-200 );
+	--denhaag-file-left-padding-inline-end: 0.75rem;
+	--denhaag-file-left-padding-inline-start: 0.75rem;
 
 	/* File right section */
-	--denhaag-file-right-gap: 0.25em;
-	--denhaag-file-right-padding-block-end: 0.25em;
-	--denhaag-file-right-padding-block-start: 0.25em;
-	--denhaag-file-right-padding-inline-end: 0.25em;
-	--denhaag-file-right-padding-inline-start: 0.25em;
+	--denhaag-file-right-gap: 1em;
+	--denhaag-file-right-padding-block-end: 0.75rem;
+	--denhaag-file-right-padding-block-start: 0.75rem;
+	--denhaag-file-right-padding-inline-end: 0.75rem;
+	--denhaag-file-right-padding-inline-start: 0.75rem;
 
 	/* Typography */
 	--denhaag-file-font-family: var( --font-sans );
@@ -36,20 +36,6 @@
 	--denhaag-file-line-height: 1.5;
 }
 
-/* Temp, remove */
-.denhaag-icon {
-	@apply w-5;
-}
-
-/* Overrides */
-.denhaag-file__label {
-	/* Remove the description */
-	/* #description {
-		@apply hidden
-	} */
-}
-
-/* Ugly fix to account for double div roots in the file component */
-div:has( .denhaag-file ) + div:has( .denhaag-file ) .denhaag-file {
-	@apply border-t-0;
+:has(> .denhaag-file) + :has(> .denhaag-file) .denhaag-file {
+    @apply border-t-0;
 }
