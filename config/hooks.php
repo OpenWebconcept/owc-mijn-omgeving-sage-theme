@@ -21,7 +21,7 @@ return [
 	\OWC\MijnOmgeving\Hooks\Pronamic::class,
 	\OWC\MijnOmgeving\Hooks\Setup::class,
 	\OWC\MijnOmgeving\Hooks\Theme::class,
-	\OWC\MijnOmgeving\Hooks\SidebarIcons::class,
+	\OWC\MijnOmgeving\Hooks\SidebarFields::class,
 	\Yard\Brave\Hooks\Authorization::class,
 	\Yard\Brave\Hooks\Security::class,
 	\Yard\Brave\Hooks\ACF::class,
