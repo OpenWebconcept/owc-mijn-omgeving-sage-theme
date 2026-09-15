@@ -4,12 +4,12 @@ declare(strict_types=1);
 
 namespace OWC\MijnOmgeving\View\Components\Menu;
 
-use OWC\MijnOmgeving\Helpers\Icon;
-use OWC\MijnOmgeving\Helpers\Prefill;
 use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 use Log1x\Navi\Navi;
+use OWC\MijnOmgeving\Helpers\Icon;
+use OWC\MijnOmgeving\Helpers\Prefill;
 
 class Sidebar extends Component
 {
@@ -143,12 +143,49 @@ class Sidebar extends Component
 			$this->hasLogout = true;
 		}
 
+		$openIdPluginActive = $this->isOpenIdPluginActive();
+
 		if ('' !== $bsn) {
-			$this->logoutUrl = home_url('sso-logout?idp=digid');
+			$this->logoutUrl = $openIdPluginActive
+				? home_url('sso-logout?idp=digid')
+				: $this->digidLogoutUrl();
 		} elseif ('' !== $kvk) {
-			$this->logoutUrl = home_url('sso-logout?idp=eherkenning');
+			$this->logoutUrl = $openIdPluginActive
+				? home_url('sso-logout?idp=eherkenning')
+				: $this->eherkenningLogoutUrl();
 		}
 
 		return view('components.menu.sidebar');
+	}
+
+	private function digidLogoutUrl(): ?string
+	{
+		return function_exists('Yard\DigiD\Foundation\Helpers\config')
+			? \Yard\DigiD\Foundation\Helpers\config('digid.url.logout')
+			: null;
+	}
+
+	private function eherkenningLogoutUrl(): ?string
+	{
+		return function_exists('Yard\eHerkenning\Foundation\Helpers\config')
+			? \Yard\eHerkenning\Foundation\Helpers\config('eherkenning.url.logout')
+			: null;
+	}
+
+	/**
+	 * The `sso-logout?idp=` URL is only handled when the Anoigo or Signicat
+	 * OpenID plugin is active (their `path_logout` route dispatches on the
+	 * `idp` query var). Without either plugin, fall back to the legacy
+	 * per-IDP logout routes registered by the SAML-based DigiD/eHerkenning
+	 * plugins.
+	 */
+	protected function isOpenIdPluginActive(): bool
+	{
+		if (! function_exists('is_plugin_active')) {
+			require_once ABSPATH . 'wp-admin/includes/plugin.php';
+		}
+
+		return is_plugin_active('owc-anoigo-openid/owc-anoigo-openid.php')
+			|| is_plugin_active('owc-signicat-openid/owc-signicat-openid.php');
 	}
 }
