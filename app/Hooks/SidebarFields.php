@@ -6,7 +6,7 @@ namespace OWC\MijnOmgeving\Hooks;
 
 use Yard\Hook\Action;
 
-class SidebarIcons
+class SidebarFields
 {
 	public const ICON_TYPE_MUNICIPALITY = 'municipality';
 	public const ICON_TYPE_FONTAWESOME = 'fontawesome';
@@ -42,6 +42,19 @@ class SidebarIcons
 					'type' => 'select',
 					'choices' => $this->getMunicipalityIcons(),
 					'instructions' => 'Bekijk de iconen op <a href="https://www.gemeenteniconen.nl/iconen" target="_blank">https://www.gemeenteniconen.nl/iconen</a>',
+				],
+				[
+				    'key' => 'field_67dbede85dc29',
+                    'label' => 'Zichtbaarheid loginmethode',
+                    'name' => 'menu_item_auth_method_visibility',
+                    'type' => 'select',
+                    'choices' => [
+                        'all' => 'Alle',
+                        'digid' => 'DigiD',
+                        'eherkenning' => 'EHerkenning',
+                    ],
+                    'description' => 'Kies bij welke loginmethode dit menu-item zichtbaar moet zijn.',
+                    'default_value' => 'all',
 				],
 			],
 			'location' => [
