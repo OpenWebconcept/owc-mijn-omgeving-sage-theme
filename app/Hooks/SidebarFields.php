@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace OWC\MijnOmgeving\Hooks;
 
+use OWC\MijnOmgeving\Services\UserContext;
 use Yard\Hook\Action;
 
 class SidebarFields
@@ -14,6 +15,9 @@ class SidebarFields
 
 	public const ACF_FIELD_FONTAWESOME_ICON = 'menu_item_icon';
 	public const ACF_FIELD_MUNICIPALITY_ICON = 'menu_item_muncipality_icon';
+	public const ACF_FIELD_AUTH_METHOD_VISIBILITY = 'menu_item_auth_method_visibility';
+
+	public const AUTH_METHOD_VISIBILITY_ALL = 'all';
 
 	public const MENU_LOCATION = 'sidebar_navigation';
 
@@ -44,17 +48,17 @@ class SidebarFields
 					'instructions' => 'Bekijk de iconen op <a href="https://www.gemeenteniconen.nl/iconen" target="_blank">https://www.gemeenteniconen.nl/iconen</a>',
 				],
 				[
-				    'key' => 'field_67dbede85dc29',
-                    'label' => 'Zichtbaarheid loginmethode',
-                    'name' => 'menu_item_auth_method_visibility',
-                    'type' => 'select',
-                    'choices' => [
-                        'all' => 'Alle',
-                        'digid' => 'DigiD',
-                        'eherkenning' => 'EHerkenning',
-                    ],
-                    'description' => 'Kies bij welke loginmethode dit menu-item zichtbaar moet zijn.',
-                    'default_value' => 'all',
+					'key' => 'field_67dbede85dc29',
+					'label' => 'Zichtbaarheid loginmethode',
+					'name' => self::ACF_FIELD_AUTH_METHOD_VISIBILITY,
+					'type' => 'select',
+					'choices' => [
+						self::AUTH_METHOD_VISIBILITY_ALL => 'Alle',
+						UserContext::AUTH_METHOD_DIGID => 'DigiD',
+						UserContext::AUTH_METHOD_EHERKENNING => 'eHerkenning',
+					],
+					'instructions' => 'Kies bij welke loginmethode dit menu-item zichtbaar moet zijn.',
+					'default_value' => self::AUTH_METHOD_VISIBILITY_ALL,
 				],
 			],
 			'location' => [
