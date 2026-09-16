@@ -59,15 +59,7 @@ class Sidebar extends Component
 	{
 		$authMethod = $this->userContext->authMethod();
 
-		$items = array_filter($items, fn ($item) => $this->isVisibleForAuthMethod($item, $authMethod));
-
-		foreach ($items as $item) {
-			if (! empty($item->children)) {
-				$item->children = $this->filterByAuthMethod((array) $item->children);
-			}
-		}
-
-		return $items;
+		return array_filter($items, fn ($item) => $this->isVisibleForAuthMethod($item, $authMethod));
 	}
 
 	protected function isVisibleForAuthMethod(object $item, ?string $authMethod): bool

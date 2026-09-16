@@ -62,6 +62,10 @@ final class ZaakContext
 
 	public static function setTitle(string $title): void
 	{
+		if (null !== self::$title) {
+			return;
+		}
+
 		$title = trim(wp_strip_all_tags($title));
 
 		self::$title = '' !== $title ? $title : null;
