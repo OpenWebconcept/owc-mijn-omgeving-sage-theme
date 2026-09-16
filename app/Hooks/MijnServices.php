@@ -25,7 +25,7 @@ class MijnServices
 	#[Filter('seopress_pro_breadcrumbs_crumbs')]
 	public function addZaakBreadcrumbs(array $crumbs): array
 	{
-		if (! ZaakContext::isZaakDetail() || empty($crumbs)) {
+		if (! ZaakContext::isZaakDetail() || [] === $crumbs) {
 			return $crumbs;
 		}
 
