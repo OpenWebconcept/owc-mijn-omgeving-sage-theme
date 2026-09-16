@@ -2,11 +2,12 @@
 	/**
 	 * Template Name: Sidebar (Mijn Services)
 	 */
+	use OWC\MijnOmgeving\Services\ZaakContext;
 @endphp
 
 <x-layout.sidebar-menu-main>
 	<x-slot:main>
-		@if ($postData->shouldShowTitle() && $postData->title() !== 'Zaak')
+		@if ($postData->shouldShowTitle() && !ZaakContext::rendersZaakBlock())
 			<h1>{!! $postData->title() !!}</h1>
 		@endif
 
