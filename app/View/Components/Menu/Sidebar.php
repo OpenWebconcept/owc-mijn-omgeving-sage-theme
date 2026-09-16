@@ -7,6 +7,7 @@ namespace OWC\MijnOmgeving\View\Components\Menu;
 use OWC\MijnOmgeving\Helpers\Icon;
 use OWC\MijnOmgeving\Hooks\SidebarFields;
 use OWC\MijnOmgeving\Services\UserContext;
+use OWC\MijnOmgeving\Services\ZaakContext;
 use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
@@ -32,9 +33,26 @@ class Sidebar extends Component
 		$menu = Navi::make()->build(SidebarFields::MENU_LOCATION);
 		$this->hasFallbackMenu = $menu->isEmpty();
 
-		return $menu->isNotEmpty()
+		$items = $menu->isNotEmpty()
 				? $this->filterByAuthMethod($menu->all())
 				: $this->fallbackMenu();
+
+		return $this->markZaakDetailActive($items);
+	}
+
+	protected function markZaakDetailActive(array $items): array
+	{
+		if (! ZaakContext::isZaakDetail()) {
+			return $items;
+		}
+
+		foreach ($items as $item) {
+			if (ZaakContext::isOverviewPage((int) ($item->objectId ?? 0))) {
+				$item->active = true;
+			}
+		}
+
+		return $items;
 	}
 
 	protected function filterByAuthMethod(array $items): array
@@ -94,7 +112,7 @@ class Sidebar extends Component
 		])->map(fn ($item) => (object) [
 			'url' => home_url($item['slug']),
 			'label' => $item['label'],
-			'active' => request()->is($item['slug']),
+			'active' => request()->is($item['slug']) || (ZaakContext::isZaakDetail() && ZaakContext::FALLBACK_OVERVIEW_SLUG === $item['slug']),
 			'icon' => $item['icon'],
 			'id' => '0',
 		])->all();

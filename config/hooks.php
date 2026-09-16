@@ -16,6 +16,7 @@ declare(strict_types=1);
 return [
 	\OWC\MijnOmgeving\Hooks\Assets::class,
 	\OWC\MijnOmgeving\Hooks\Capabilities::class,
+	\OWC\MijnOmgeving\Hooks\MijnServices::class,
 	\OWC\MijnOmgeving\Hooks\Openkaarten::class,
 	\OWC\MijnOmgeving\Hooks\OWC::class,
 	\OWC\MijnOmgeving\Hooks\Pronamic::class,
