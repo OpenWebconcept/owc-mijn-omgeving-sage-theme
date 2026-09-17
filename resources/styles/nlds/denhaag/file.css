@@ -36,6 +36,6 @@
 	--denhaag-file-line-height: 1.5;
 }
 
-:has(.denhaag-file) + :has(.denhaag-file) .denhaag-file {
+:has(> .denhaag-file) + :has(> .denhaag-file) .denhaag-file {
     @apply border-t-0;
 }
