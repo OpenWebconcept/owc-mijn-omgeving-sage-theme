@@ -4,40 +4,77 @@ declare(strict_types=1);
 
 namespace OWC\MijnOmgeving\View\Components\Menu;
 
+use OWC\MijnOmgeving\Helpers\Icon;
+use OWC\MijnOmgeving\Hooks\SidebarFields;
+use OWC\MijnOmgeving\Services\UserContext;
+use OWC\MijnOmgeving\Services\ZaakContext;
 use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 use Log1x\Navi\Navi;
-use OWC\MijnOmgeving\Helpers\Icon;
-use OWC\MijnOmgeving\Helpers\Prefill;
 
 class Sidebar extends Component
 {
-	public const ICON_TYPE_MUNICIPALITY = 'municipality';
-	public const ICON_TYPE_FONTAWESOME = 'fontawesome';
-	public const ICON_NONE = 'none';
-
-	public const ACF_FIELD_FONTAWESOME_ICON = 'menu_item_icon';
-	public const ACF_FIELD_MUNICIPALITY_ICON = 'menu_item_muncipality_icon';
-
 	public mixed $menu;
 	public bool $hasFallbackMenu;
 	public bool $hasLogout = false;
 	public ?string $logoutUrl = null;
 
+	protected UserContext $userContext;
+
 	public function __construct()
 	{
+		$this->userContext = new UserContext();
 		$this->menu = $this->resolveMenu();
 	}
 
 	protected function resolveMenu(): array
 	{
-		$menu = Navi::make()->build('sidebar_navigation');
+		$menu = Navi::make()->build(SidebarFields::MENU_LOCATION);
 		$this->hasFallbackMenu = $menu->isEmpty();
 
-		return $menu->isNotEmpty()
-				? $menu->all()
+		$items = $menu->isNotEmpty()
+				? $this->filterByAuthMethod($menu->all())
 				: $this->fallbackMenu();
+
+		return $this->markZaakDetailActive($items);
+	}
+
+	protected function markZaakDetailActive(array $items): array
+	{
+		if (! ZaakContext::isZaakDetail()) {
+			return $items;
+		}
+
+		foreach ($items as $item) {
+			if (ZaakContext::isOverviewPage((int) ($item->objectId ?? 0))) {
+				$item->active = true;
+			}
+		}
+
+		return $items;
+	}
+
+	protected function filterByAuthMethod(array $items): array
+	{
+		$authMethod = $this->userContext->authMethod();
+
+		return array_filter($items, fn ($item) => $this->isVisibleForAuthMethod($item, $authMethod));
+	}
+
+	protected function isVisibleForAuthMethod(object $item, ?string $authMethod): bool
+	{
+		if (! function_exists('get_field')) {
+			return true;
+		}
+
+		$visibility = get_field(SidebarFields::ACF_FIELD_AUTH_METHOD_VISIBILITY, $item->id);
+
+		if (empty($visibility) || SidebarFields::AUTH_METHOD_VISIBILITY_ALL === $visibility) {
+			return true;
+		}
+
+		return $visibility === $authMethod;
 	}
 
 	protected function fallbackMenu(): array
@@ -67,7 +104,7 @@ class Sidebar extends Component
 		])->map(fn ($item) => (object) [
 			'url' => home_url($item['slug']),
 			'label' => $item['label'],
-			'active' => request()->is($item['slug']),
+			'active' => request()->is($item['slug']) || (ZaakContext::isZaakDetail() && ZaakContext::FALLBACK_OVERVIEW_SLUG === $item['slug']),
 			'icon' => $item['icon'],
 			'id' => '0',
 		])->all();
@@ -90,18 +127,18 @@ class Sidebar extends Component
 			return null;
 		}
 
-		$fieldIcon = get_field(self::ACF_FIELD_FONTAWESOME_ICON, $item->id);
+		$fieldIcon = get_field(SidebarFields::ACF_FIELD_FONTAWESOME_ICON, $item->id);
 		if (! empty($fieldIcon)) {
 			return [
-				'type' => self::ICON_TYPE_FONTAWESOME,
+				'type' => SidebarFields::ICON_TYPE_FONTAWESOME,
 				'icon' => esc_attr($fieldIcon),
 			];
 		}
 
-		$municipalityIcon = get_field(self::ACF_FIELD_MUNICIPALITY_ICON, $item->id);
-		if (! empty($municipalityIcon) && self::ICON_NONE !== $municipalityIcon) {
+		$municipalityIcon = get_field(SidebarFields::ACF_FIELD_MUNICIPALITY_ICON, $item->id);
+		if (! empty($municipalityIcon) && SidebarFields::ICON_NONE !== $municipalityIcon) {
 			return [
-				'type' => self::ICON_TYPE_MUNICIPALITY,
+				'type' => SidebarFields::ICON_TYPE_MUNICIPALITY,
 				'icon' => esc_attr($municipalityIcon),
 			];
 		}
@@ -117,11 +154,11 @@ class Sidebar extends Component
 
 		return match ($iconData['type']) {
 			/* Only renders when a Font Awesome kit is configured; see config/app.php. */
-			self::ICON_TYPE_FONTAWESOME => sprintf(
+			SidebarFields::ICON_TYPE_FONTAWESOME => sprintf(
 				'<i class="fa-fw fa-regular fa-%s" aria-hidden="true"></i>',
 				$iconData['icon']
 			),
-			self::ICON_TYPE_MUNICIPALITY => $this->getMunicipalityIconHtml($iconData['icon']),
+			SidebarFields::ICON_TYPE_MUNICIPALITY => $this->getMunicipalityIconHtml($iconData['icon']),
 			default => '',
 		};
 	}
@@ -136,24 +173,18 @@ class Sidebar extends Component
 
 	public function render(): View|Closure|string
 	{
-		$bsn = Prefill::currentUserBSN();
-		$kvk = Prefill::currentUserKVK();
+		$authMethod = $this->userContext->authMethod();
+        $openIdPluginActive = $this->isOpenIdPluginActive();
 
-		if ('' !== $bsn || '' !== $kvk) {
-			$this->hasLogout = true;
-		}
+		$this->hasLogout = null !== $authMethod;
 
-		$openIdPluginActive = $this->isOpenIdPluginActive();
-
-		if ('' !== $bsn) {
-			$this->logoutUrl = $openIdPluginActive
-				? home_url('sso-logout?idp=digid')
-				: $this->digidLogoutUrl();
-		} elseif ('' !== $kvk) {
-			$this->logoutUrl = $openIdPluginActive
-				? home_url('sso-logout?idp=eherkenning')
-				: $this->eherkenningLogoutUrl();
-		}
+        $this->logoutUrl = match (true) {
+            !$this->hasLogout => null,
+            $openIdPluginActive => home_url("sso-logout?idp={$authMethod}"),
+            UserContext::AUTH_METHOD_DIGID === $authMethod => $this->digidLogoutUrl(),
+            UserContext::AUTH_METHOD_EHERKENNING === $authMethod => $this->eherkenningLogoutUrl(),
+            default  => null,
+        };
 
 		return view('components.menu.sidebar');
 	}
