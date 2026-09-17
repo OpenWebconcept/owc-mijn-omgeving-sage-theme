@@ -1,6 +1,6 @@
 .gform_wrapper.gravity-theme {
 	@variant all-form-text-inputs {
-		@apply px-3 py-3 !text-base;
+		@apply px-3 py-3 text-base!;
 	}
 
 	.gform_fields {
@@ -206,10 +206,14 @@
 
 		.gform_button,
 		.gform-theme-button {
-			@apply is-button m-0 w-full !text-center sm:w-auto;
+			@apply is-button m-0 w-full text-center! sm:w-auto;
 
 			&.gform-theme-button--secondary {
         		@apply is-button-outline;
+
+				&::after {
+					@apply hidden! content-none!;
+				}
 			}
 
 			&.gform-has-spinner {
@@ -226,7 +230,7 @@
 		}
 
 		.gform_save_link {
-			@apply mr-auto ml-0 flex after:!content-none sm:order-first;
+			@apply mr-auto ml-0 flex after:content-none! sm:order-first;
 		}
 	}
 
@@ -285,7 +289,7 @@
 }
 
 .gform-recaptcha-disclaimer {
-	@apply text-xs !leading-[1.5] text-gray-500;
+	@apply text-xs leading-normal! text-gray-500;
 
 	a {
 		@apply text-inherit;
