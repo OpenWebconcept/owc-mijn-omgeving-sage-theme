@@ -204,16 +204,11 @@
 	.gform_footer {
 		@apply mt-6 flex flex-col justify-end gap-2 border-t border-gray-300 pt-6 sm:flex-row sm:items-center;
 
-		.gform_button,
 		.gform-theme-button {
 			@apply is-button m-0 w-full text-center! sm:w-auto;
 
 			&.gform-theme-button--secondary {
         		@apply is-button-outline;
-
-				&::after {
-					@apply hidden! content-none!;
-				}
 			}
 
 			&.gform-has-spinner {
@@ -229,16 +224,16 @@
 			@apply max-sm:-order-1;
 		}
 
-		.gform_save_link {
-			@apply mr-auto ml-0 flex after:content-none! sm:order-first;
+		.gform_previous_button::after {
+            @apply hidden! content-none!;
 		}
-	}
 
-	button[type='button'].gform_save_link {
-		@apply is-button is-button-subtle;
+		.gform_save_link {
+			@apply is-button-subtle items-center mr-auto ml-0 flex after:content-none! sm:order-first;
 
-		svg path {
-			@apply fill-black;
+			path {
+				@apply fill-current;
+			}
 		}
 	}
 
