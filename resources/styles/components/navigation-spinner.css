@@ -1,0 +1,134 @@
+.owc-navigation-spinner {
+    position: fixed;
+    z-index: 9999;
+    inset-block-end: calc(
+            var(--owc-navigation-spinner-inset-block-end, 1rem) +
+            env(safe-area-inset-bottom, 0px)
+    );
+    inset-inline-end: calc(
+            var(--owc-navigation-spinner-inset-inline-end, 1rem) +
+            max(env(safe-area-inset-left, 0px), env(safe-area-inset-right, 0px))
+    );
+    display: flex;
+    align-items: center;
+    gap: var(--owc-navigation-spinner-gap, 0.5rem);
+    padding-block: var(--owc-navigation-spinner-padding-block, 0.5rem);
+    padding-inline: var(--owc-navigation-spinner-padding-inline, 0.75rem);
+    border: 1px solid var(--owc-navigation-spinner-border-color, var(--color-primary, #000));
+    border-radius: var(--owc-navigation-spinner-radius, 0.25rem);
+    background-color: var(
+            --owc-navigation-spinner-bg-color,
+            var(--color-primary-100, #eaeaea)
+    );
+    color: var(--owc-navigation-spinner-color, var(--color-primary, #000));
+    font-size: var(--owc-navigation-spinner-font-size, 1rem);
+    font-weight: var(--owc-navigation-spinner-weight, 400);
+    line-height: 1.25;
+    opacity: 1;
+    translate: 0 0;
+    transition: opacity var(--owc-navigation-spinner-enter-duration, 300ms) ease-out,
+    translate var(--owc-navigation-spinner-enter-duration, 300ms) ease-out;
+    pointer-events: none;
+    view-transition-name: owc-navigation-spinner;
+}
+
+.owc-navigation-spinner[hidden] {
+    display: none;
+}
+
+@starting-style {
+    .owc-navigation-spinner {
+        opacity: 0;
+        translate: 0 var(--owc-navigation-spinner-enter-offset, 0.375rem);
+    }
+}
+
+.owc-navigation-spinner__label {
+    view-transition-name: owc-navigation-spinner-label;
+}
+
+:root.owc-navigation-spinner-transition {
+    view-transition-name: none;
+}
+
+::view-transition-group(owc-navigation-spinner),
+::view-transition-old(owc-navigation-spinner),
+::view-transition-new(owc-navigation-spinner),
+::view-transition-group(owc-navigation-spinner-icon),
+::view-transition-group(owc-navigation-spinner-label) {
+    animation-duration: var(--owc-navigation-spinner-swap-duration, 300ms);
+    animation-timing-function: ease-out;
+}
+
+::view-transition-old(owc-navigation-spinner-label),
+::view-transition-new(owc-navigation-spinner-label) {
+    inset-block-start: auto;
+    inset-block-end: 0;
+    inset-inline-start: auto;
+    inset-inline-end: 0;
+    inline-size: auto;
+    block-size: auto;
+}
+
+::view-transition-old(owc-navigation-spinner-label) {
+    animation: owc-navigation-spinner-fade-out var(--owc-navigation-spinner-fade-duration, 300ms) ease-out both;
+}
+
+::view-transition-new(owc-navigation-spinner-label) {
+    animation: owc-navigation-spinner-fade-in var(--owc-navigation-spinner-fade-duration, 300ms) ease-in var(--owc-navigation-spinner-fade-delay, 100ms) both;
+}
+
+::view-transition-old(owc-navigation-spinner),
+::view-transition-new(owc-navigation-spinner) {
+    block-size: 100%;
+}
+
+::view-transition-old(owc-navigation-spinner-icon) {
+    display: none;
+}
+
+::view-transition-new(owc-navigation-spinner-icon) {
+    animation: none;
+}
+
+@keyframes owc-navigation-spinner-fade-out {
+    to {
+        opacity: 0;
+    }
+}
+
+@keyframes owc-navigation-spinner-fade-in {
+    from {
+        opacity: 0;
+    }
+}
+
+.owc-navigation-spinner__icon {
+    flex-shrink: 0;
+    inline-size: var(--owc-navigation-spinner-icon-size, 1.75rem);
+    block-size: var(--owc-navigation-spinner-icon-size, 1.75rem);
+    color: var(--owc-navigation-spinner-icon-color, currentColor);
+    fill: currentColor;
+    animation: owc-navigation-spinner-rotation 1250ms linear infinite;
+    view-transition-name: owc-navigation-spinner-icon;
+}
+
+@keyframes owc-navigation-spinner-rotation {
+    from {
+        transform: rotate(0);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .owc-navigation-spinner {
+        transition: none;
+    }
+
+    .owc-navigation-spinner__icon {
+        animation: none;
+    }
+}

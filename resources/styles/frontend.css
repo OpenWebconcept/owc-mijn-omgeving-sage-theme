@@ -23,6 +23,7 @@
 @import './components/cookie-yes';
 @import './components/footer';
 @import './components/forms';
+@import './components/navigation-spinner';
 
 /* Elements */
 @import './elements/lists';
