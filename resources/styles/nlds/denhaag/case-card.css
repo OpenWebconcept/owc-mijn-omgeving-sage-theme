@@ -50,8 +50,6 @@
 
 /* Overrides */
 .denhaag-card-group {
-	@apply pt-6;
-
 	@variant md {
 		grid-template-columns: repeat( 2, 1fr );
 	}
