@@ -28,6 +28,7 @@
 	}
 
 	/* Overwrite the "Veldgrootte" option. It's wrong on many of the imported forms. */
+
 	.gfield {
 		input.small,
 		select.small,
@@ -105,6 +106,7 @@
 	}
 
 	/* Progress bar */
+
 	.gf_progressbar {
 		@apply rounded-(--gf-progress-bar-radius) bg-(--gf-progress-bar-bg-color);
 	}
@@ -133,17 +135,20 @@
 		}
 
 		/* Specificity */
+
 		&.percentbar_blue {
 			@apply bg-(--gf-progress-bar-percentage-bg-color);
 		}
 	}
 
 	/* Date */
+
 	.ginput_complex .ginput_container_date select {
 		@apply w-auto min-w-0;
 	}
 
 	/* Fileupload: single */
+
 	.gform_fileupload_rules {
 		@apply text-xs text-gray-500;
 	}
@@ -181,9 +186,11 @@
 	}
 
 	/* Fileupload: multiple */
+
 	.gform_fileupload_multifile {
 		.moxie-shim {
-			@apply opacity-0; /* Hide the fake file input */
+			@apply opacity-0;
+			/* Hide the fake file input */
 		}
 	}
 
@@ -200,15 +207,25 @@
 	}
 
 	/* Form footer */
+
 	.gform-page-footer,
 	.gform_footer {
 		@apply mt-6 flex flex-col justify-end gap-2 border-t border-gray-300 pt-6 sm:flex-row sm:items-center;
 
-		.gform-theme-button {
+		button {
 			@apply is-button m-0 w-full text-center! sm:w-auto;
 
-			&.gform-theme-button--secondary {
-        		@apply is-button-outline;
+			&[data-submission-type='previous'] {
+				@apply is-button-outline;
+
+				&::after {
+					@apply hidden! content-none!;
+				}
+			}
+
+			&[data-submission-type='next'],
+			&[data-submission-type='submit'] {
+				@apply max-sm:-order-1;
 			}
 
 			&.gform-has-spinner {
@@ -216,20 +233,12 @@
 			}
 
 			.gform-loader {
-				@apply border-l-(--button-color)/15 border-b-(--button-color)/15 border-t-(--button-color) border-r-(--button-color);
+				@apply border-t-(--button-color) border-r-(--button-color) border-b-(--button-color)/15 border-l-(--button-color)/15;
 			}
 		}
 
-		.gform_next_button {
-			@apply max-sm:-order-1;
-		}
-
-		.gform_previous_button::after {
-            @apply hidden! content-none!;
-		}
-
 		.gform_save_link {
-			@apply is-button-subtle items-center mr-auto ml-0 flex after:content-none! sm:order-first;
+			@apply is-button-subtle mr-auto ml-0 flex items-center after:content-none! sm:order-first;
 
 			path {
 				@apply fill-current;
@@ -238,6 +247,7 @@
 	}
 
 	/* Save and continue */
+
 	.form_saved_message {
 		@apply normalize-child-margin my-6 rounded-theme bg-(--box-bg-color) p-6 md:my-8 md:p-8;
 
@@ -274,6 +284,7 @@
 	}
 
 	/* Clients did hacky stuff with the custom HTML field. Resetting styles here. */
+
 	.wp-block-columns {
 		@apply my-0!;
 	}
