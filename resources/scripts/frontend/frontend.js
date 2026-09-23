@@ -16,6 +16,7 @@ import A11yToolbar from '@yardinternet/a11y-toolbar';
 /**
  * Internal dependencies
  */
+import NavigationSpinner from './components/NavigationSpinner';
 import Openkaarten from './components/Openkaarten';
 
 import iconVolume from '../../images/icons/volume-2.svg?raw';
@@ -54,5 +55,6 @@ window.addEventListener( 'DOMContentLoaded', () => {
 	new FocusStyle();
 	new WebShareApi();
 
+	NavigationSpinner();
 	Openkaarten();
 } );
