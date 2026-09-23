@@ -35,7 +35,7 @@ h1 {
 }
 
 h2 {
-	@apply mb-3;
+	@apply mb-6 not-first:mt-10;
 	font-size: var( --h2-font-size );
 }
 
@@ -71,11 +71,13 @@ a {
 	}
 
 	/* Hide links if they are empty. Easy fix for some Gutenberg and a11y issues. */
+
 	&:not( [class] ):empty {
 		@apply hidden;
 	}
 
 	/* Always break long email addresses */
+
 	&[href^='mailto:'] {
 		@apply break-word hyphens-auto;
 	}

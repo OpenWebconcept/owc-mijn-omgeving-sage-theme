@@ -4,9 +4,10 @@ declare(strict_types=1);
 
 namespace OWC\MijnOmgeving\Hooks;
 
+use OWC\MijnOmgeving\Services\UserContext;
 use Yard\Hook\Action;
 
-class SidebarIcons
+class SidebarFields
 {
 	public const ICON_TYPE_MUNICIPALITY = 'municipality';
 	public const ICON_TYPE_FONTAWESOME = 'fontawesome';
@@ -14,6 +15,10 @@ class SidebarIcons
 
 	public const ACF_FIELD_FONTAWESOME_ICON = 'menu_item_icon';
 	public const ACF_FIELD_MUNICIPALITY_ICON = 'menu_item_muncipality_icon';
+	public const ACF_FIELD_AUTH_METHOD_VISIBILITY = 'menu_item_auth_method_visibility';
+    public const ACF_FIELD_MARGIN_ABOVE = 'menu_item_margin_above';
+
+	public const AUTH_METHOD_VISIBILITY_ALL = 'all';
 
 	public const MENU_LOCATION = 'sidebar_navigation';
 
@@ -27,6 +32,7 @@ class SidebarIcons
 		acf_add_local_field_group([
 			'key' => 'group_66f54927e0cb1',
 			'title' => 'Sidebar',
+            'instruction_placement' => 'field',
 			'fields' => [
 				[
 					'key' => 'field_66f549282efec',
@@ -43,6 +49,28 @@ class SidebarIcons
 					'choices' => $this->getMunicipalityIcons(),
 					'instructions' => 'Bekijk de iconen op <a href="https://www.gemeenteniconen.nl/iconen" target="_blank">https://www.gemeenteniconen.nl/iconen</a>',
 				],
+				[
+					'key' => 'field_67dbede85dc29',
+					'label' => 'Zichtbaarheid loginmethode',
+					'name' => self::ACF_FIELD_AUTH_METHOD_VISIBILITY,
+					'type' => 'select',
+					'choices' => [
+						self::AUTH_METHOD_VISIBILITY_ALL => 'Alle',
+						UserContext::AUTH_METHOD_DIGID => 'DigiD',
+						UserContext::AUTH_METHOD_EHERKENNING => 'eHerkenning',
+					],
+					'instructions' => 'Kies bij welke loginmethode dit menu-item zichtbaar moet zijn.',
+					'default_value' => self::AUTH_METHOD_VISIBILITY_ALL,
+				],
+                [
+                    'key' => 'field_67dbede85dc30',
+                    'label' => 'Marge boven dit item',
+                    'name' => self::ACF_FIELD_MARGIN_ABOVE,
+                    'type' => 'true_false',
+                    'instructions' => 'Schakel in om een marge te tonen boven dit menu item. Hiermee kunnen groepen worden gemaakt inhet menu.',
+                    'default_value' => 0,
+                    'ui' => 1,
+                ],
 			],
 			'location' => [
 				[
