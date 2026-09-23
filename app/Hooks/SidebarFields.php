@@ -16,6 +16,7 @@ class SidebarFields
 	public const ACF_FIELD_FONTAWESOME_ICON = 'menu_item_icon';
 	public const ACF_FIELD_MUNICIPALITY_ICON = 'menu_item_muncipality_icon';
 	public const ACF_FIELD_AUTH_METHOD_VISIBILITY = 'menu_item_auth_method_visibility';
+    public const ACF_FIELD_MARGIN_ABOVE = 'menu_item_margin_above';
 
 	public const AUTH_METHOD_VISIBILITY_ALL = 'all';
 
@@ -31,6 +32,7 @@ class SidebarFields
 		acf_add_local_field_group([
 			'key' => 'group_66f54927e0cb1',
 			'title' => 'Sidebar',
+            'instruction_placement' => 'field',
 			'fields' => [
 				[
 					'key' => 'field_66f549282efec',
@@ -60,6 +62,15 @@ class SidebarFields
 					'instructions' => 'Kies bij welke loginmethode dit menu-item zichtbaar moet zijn.',
 					'default_value' => self::AUTH_METHOD_VISIBILITY_ALL,
 				],
+                [
+                    'key' => 'field_67dbede85dc30',
+                    'label' => 'Marge boven dit item',
+                    'name' => self::ACF_FIELD_MARGIN_ABOVE,
+                    'type' => 'true_false',
+                    'instructions' => 'Schakel in om een marge te tonen boven dit menu item. Hiermee kunnen groepen worden gemaakt inhet menu.',
+                    'default_value' => 0,
+                    'ui' => 1,
+                ],
 			],
 			'location' => [
 				[

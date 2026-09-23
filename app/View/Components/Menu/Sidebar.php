@@ -4,14 +4,14 @@ declare(strict_types=1);
 
 namespace OWC\MijnOmgeving\View\Components\Menu;
 
-use OWC\MijnOmgeving\Helpers\Icon;
-use OWC\MijnOmgeving\Hooks\SidebarFields;
-use OWC\MijnOmgeving\Services\UserContext;
-use OWC\MijnOmgeving\Services\ZaakContext;
 use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 use Log1x\Navi\Navi;
+use OWC\MijnOmgeving\Helpers\Icon;
+use OWC\MijnOmgeving\Hooks\SidebarFields;
+use OWC\MijnOmgeving\Services\UserContext;
+use OWC\MijnOmgeving\Services\ZaakContext;
 
 class Sidebar extends Component
 {
@@ -170,6 +170,15 @@ class Sidebar extends Component
 			'denhaag-icon w-5'
 		);
 	}
+
+    public function getMarginAbove($item): bool
+    {
+        if (! function_exists('get_field')) {
+            return false;
+        }
+
+        return get_field(SidebarFields::ACF_FIELD_MARGIN_ABOVE, $item->id) ?? false;
+    }
 
 	public function render(): View|Closure|string
 	{
