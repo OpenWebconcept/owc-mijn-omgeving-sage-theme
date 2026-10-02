@@ -1,5 +1,3 @@
-import { __ } from '@wordpress/i18n';
-
 const SHOW_DELAY_MS = 750;
 const TIMEOUT_MS = 7500;
 const BASE_CLASS = 'owc-navigation-spinner';
@@ -119,14 +117,12 @@ export const showNavigationSpinner = () => {
 
 	showTimer = window.setTimeout( () => {
 		container.hidden = false;
-		label.textContent = __( 'Bezig met laden…', 'owc-mijn-services' );
+		label.textContent = 'Bezig met laden…';
 	}, SHOW_DELAY_MS );
 
 	timeoutTimer = window.setTimeout( () => {
 		container.hidden = false;
-		updateLabel(
-			__( 'Het laden duurt langer dan verwacht.', 'owc-mijn-services' )
-		);
+		updateLabel( 'Het laden duurt langer dan verwacht.' );
 	}, TIMEOUT_MS );
 };
 
