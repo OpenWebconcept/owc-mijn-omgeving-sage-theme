@@ -39,3 +39,7 @@
 :has(> .denhaag-file) + :has(> .denhaag-file) .denhaag-file {
     @apply border-t-0;
 }
+
+.denhaag-file__label span {
+	@apply block;
+}
