@@ -143,7 +143,10 @@ const startsNavigation = ( event, anchor ) => {
 		return false;
 	}
 
-	if ( anchor.hasAttribute( 'download' ) ) {
+	if (
+		anchor.hasAttribute( 'download' ) ||
+		anchor.classList.contains( 'gravitypdf-download-link' )
+	) {
 		return false;
 	}
 
