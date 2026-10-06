@@ -35,11 +35,3 @@
 	--denhaag-file-font-weight: 400;
 	--denhaag-file-line-height: 1.5;
 }
-
-:has(> .denhaag-file) + :has(> .denhaag-file) .denhaag-file {
-    @apply border-t-0;
-}
-
-.denhaag-file__label span {
-	@apply block;
-}
