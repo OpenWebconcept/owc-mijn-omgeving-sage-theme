@@ -40,6 +40,7 @@ class Assets
 
 		echo Vite::withEntryPoints(array_map($this->viteEntry(...), [
 			'resources/scripts/editor/editor.js',
+			'resources/styles/editor-ui.css',
 		]))->toHtml();
 	}
 
