@@ -9,6 +9,7 @@ export default braveConfig( {
 		'resources/scripts/editor/editor.js',
 		'resources/scripts/frontend/frontend.js',
 		'resources/styles/editor.css',
+		'resources/styles/editor-ui.css',
 		'resources/styles/frontend.css',
 	],
 } );
