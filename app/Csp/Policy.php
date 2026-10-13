@@ -20,6 +20,36 @@ class Policy extends Basic
 
 		$this->registerSignicatConnectSource();
 		$this->registerAnoigoConnectSource();
+		$this->restrictInlineSources();
+	}
+
+	/**
+	 * DigiD norm U/PW.03 disallows 'unsafe-inline' and unrestricted schemes in script-src and style-src.
+	 * Inline scripts and styles are allowed through a nonce instead, see OWC\MijnOmgeving\Hooks\Security.
+	 * The admin and local development (Vite HMR) still require 'unsafe-inline'.
+	 */
+	public static function restrictsInlineSources(): bool
+	{
+		return ! is_admin() && ! (defined('WP_ENV') && in_array(WP_ENV, ['development', 'local'], true));
+	}
+
+	private function restrictInlineSources(): void
+	{
+		if (! self::restrictsInlineSources()) {
+			return;
+		}
+
+		$this->removeDirectiveValues(Directive::SCRIPT, ["'unsafe-inline'", 'https:']);
+		$this->removeDirectiveValues(Directive::STYLE, ["'unsafe-inline'"]);
+
+		$this
+			->addNonceForDirective(Directive::SCRIPT)
+			->addNonceForDirective(Directive::STYLE);
+	}
+
+	private function removeDirectiveValues(string $directive, array $values): void
+	{
+		$this->directives[$directive] = array_values(array_diff($this->directives[$directive] ?? [], $values));
 	}
 
 	private function registerSignicatConnectSource(): void

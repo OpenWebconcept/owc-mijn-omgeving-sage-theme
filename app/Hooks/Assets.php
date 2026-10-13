@@ -70,10 +70,25 @@ class Assets
 		$fontawesomeKit = trim((string) config('app.fontawesome.url', ''));
 
 		if ('' !== $fontawesomeKit) {
-			wp_enqueue_script('fontawesome', $fontawesomeKit, [], null, true);
+			// The CSS variant of the kit is used, because the JS variant injects inline styles which are blocked by the CSP.
+			wp_enqueue_style('fontawesome', preg_replace('/\.js$/', '.css', $fontawesomeKit), [], null);
 		}
 
 		wp_enqueue_style('theme-font', config('theme.font.url'), [], null);
+	}
+
+	/**
+	 * The Font Awesome kit validates the domain through the referrer, which the
+	 * same-origin Referrer-Policy omits for cross-origin requests.
+	 */
+	#[Filter('style_loader_tag')]
+	public function addFontawesomeReferrerPolicy(string $tag, string $handle): string
+	{
+		if ('fontawesome' !== $handle) {
+			return $tag;
+		}
+
+		return str_replace('<link ', '<link referrerpolicy="strict-origin-when-cross-origin" ', $tag);
 	}
 
 	/**
