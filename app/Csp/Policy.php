@@ -5,6 +5,8 @@ declare(strict_types=1);
 namespace OWC\MijnOmgeving\Csp;
 
 use Spatie\Csp\Directive;
+use Spatie\Csp\Keyword;
+use Spatie\Csp\Scheme;
 use Yard\Csp\Policies\Basic;
 
 class Policy extends Basic
@@ -20,6 +22,38 @@ class Policy extends Basic
 
 		$this->registerSignicatConnectSource();
 		$this->registerAnoigoConnectSource();
+		$this->restrictInlineSources();
+	}
+
+	/**
+	 * DigiD norm U/PW.03 disallows 'unsafe-inline' and unrestricted schemes in script-src and style-src.
+	 * Inline scripts and styles are allowed through a nonce instead, see OWC\MijnOmgeving\Hooks\Security.
+	 * The admin and local development (Vite HMR) still require 'unsafe-inline'.
+	 */
+	public static function restrictsInlineSources(): bool
+	{
+		return ! is_admin() && ! (defined('WP_ENV') && in_array(WP_ENV, ['development', 'local'], true));
+	}
+
+	private function restrictInlineSources(): void
+	{
+		if (! self::restrictsInlineSources()) {
+			return;
+		}
+
+		$this->removeDirectiveValues(Directive::SCRIPT, [Keyword::UNSAFE_INLINE, Scheme::HTTPS]);
+		$this->removeDirectiveValues(Directive::STYLE, [Keyword::UNSAFE_INLINE]);
+
+		$this
+			->addNonceForDirective(Directive::SCRIPT)
+			->addNonceForDirective(Directive::STYLE);
+	}
+
+	private function removeDirectiveValues(string $directive, array $values): void
+	{
+		$values = array_map(fn (string $value): string => $this->sanitizeValue($value), $values);
+
+		$this->directives[$directive] = array_values(array_diff($this->directives[$directive] ?? [], $values));
 	}
 
 	private function registerSignicatConnectSource(): void

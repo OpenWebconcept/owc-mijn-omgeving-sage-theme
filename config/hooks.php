@@ -25,6 +25,7 @@ return [
 	\OWC\MijnOmgeving\Hooks\SidebarFields::class,
 	\Yard\Brave\Hooks\Authorization::class,
 	\Yard\Brave\Hooks\Security::class,
+	\OWC\MijnOmgeving\Hooks\Security::class,
 	\Yard\Brave\Hooks\ACF::class,
 	\Yard\Brave\Hooks\Elasticsearch::class,
 	\Yard\Brave\Hooks\GravityForms::class,
