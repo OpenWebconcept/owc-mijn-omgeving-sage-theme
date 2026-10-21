@@ -5,6 +5,8 @@ declare(strict_types=1);
 namespace OWC\MijnOmgeving\Csp;
 
 use Spatie\Csp\Directive;
+use Spatie\Csp\Keyword;
+use Spatie\Csp\Scheme;
 use Yard\Csp\Policies\Basic;
 
 class Policy extends Basic
@@ -39,8 +41,8 @@ class Policy extends Basic
 			return;
 		}
 
-		$this->removeDirectiveValues(Directive::SCRIPT, ["'unsafe-inline'", 'https:']);
-		$this->removeDirectiveValues(Directive::STYLE, ["'unsafe-inline'"]);
+		$this->removeDirectiveValues(Directive::SCRIPT, [Keyword::UNSAFE_INLINE, Scheme::HTTPS]);
+		$this->removeDirectiveValues(Directive::STYLE, [Keyword::UNSAFE_INLINE]);
 
 		$this
 			->addNonceForDirective(Directive::SCRIPT)
@@ -49,6 +51,8 @@ class Policy extends Basic
 
 	private function removeDirectiveValues(string $directive, array $values): void
 	{
+		$values = array_map(fn (string $value): string => $this->sanitizeValue($value), $values);
+
 		$this->directives[$directive] = array_values(array_diff($this->directives[$directive] ?? [], $values));
 	}
 
