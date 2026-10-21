@@ -4,11 +4,10 @@ declare(strict_types=1);
 
 namespace OWC\MijnOmgeving\Hooks;
 
-use OWC\MijnOmgeving\Csp\NoncedStyles;
 use OWC\MijnOmgeving\Csp\Policy;
+use WP_HTML_Tag_Processor;
 use Yard\Hook\Action;
 use Yard\Hook\Filter;
-use WP_Styles;
 
 class Security
 {
@@ -21,16 +20,47 @@ class Security
 		header('Referrer-Policy: same-origin', true);
 	}
 
-	#[Action('wp_enqueue_scripts', PHP_INT_MAX)]
-	public function addNonceToInlineStyles(): void
+	/**
+	 * WordPress has no filter to add attributes to inline <style> tags and not every <style> tag
+	 * is printed through WP_Styles (custom CSS, font faces, plugins), so the nonce is added to the output.
+	 */
+	#[Action('wp_loaded')]
+	public function startInlineStylesBuffer(): void
 	{
-		global $wp_styles;
-
-		if (! Policy::restrictsInlineSources() || ! $wp_styles instanceof WP_Styles || $wp_styles instanceof NoncedStyles) {
+		if (! Policy::restrictsInlineSources() || wp_doing_ajax() || wp_doing_cron() || wp_is_json_request()) {
 			return;
 		}
 
-		$wp_styles = NoncedStyles::fromStyles($wp_styles);
+		ob_start($this->addNonceToInlineStyles(...));
+	}
+
+	public function addNonceToInlineStyles(string $buffer): string
+	{
+		if (! $this->isHtmlResponse() || false === stripos($buffer, '<style')) {
+			return $buffer;
+		}
+
+		$processor = new WP_HTML_Tag_Processor($buffer);
+
+		while ($processor->next_tag('style')) {
+			$processor->set_attribute('nonce', csp_nonce());
+		}
+
+		return $processor->get_updated_html();
+	}
+
+	/**
+	 * REST, feed and file responses also pass through the buffer, but only HTML may be altered.
+	 */
+	private function isHtmlResponse(): bool
+	{
+		foreach (headers_list() as $header) {
+			if (0 === stripos($header, 'content-type:')) {
+				return false !== stripos($header, 'text/html');
+			}
+		}
+
+		return true;
 	}
 
 	/**
