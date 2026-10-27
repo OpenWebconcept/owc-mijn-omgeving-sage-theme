@@ -21,6 +21,19 @@ class Security
 	}
 
 	/**
+	 * A cached response would hand every visitor the same CSP nonce, which defeats it.
+	 */
+	#[Action('send_headers')]
+	public function sendNoCacheHeaders(): void
+	{
+		if (! Policy::restrictsInlineSources()) {
+			return;
+		}
+
+		nocache_headers();
+	}
+
+	/**
 	 * WordPress has no filter to add attributes to inline <style> tags and not every <style> tag
 	 * is printed through WP_Styles (custom CSS, font faces, plugins), so the nonce is added to the output.
 	 */
