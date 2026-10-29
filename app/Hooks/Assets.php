@@ -7,6 +7,7 @@ namespace OWC\MijnOmgeving\Hooks;
 use Illuminate\Support\Facades\Vite;
 use Yard\Hook\Action;
 use Yard\Hook\Filter;
+use WP_HTML_Tag_Processor;
 
 class Assets
 {
@@ -88,7 +89,13 @@ class Assets
 			return $tag;
 		}
 
-		return str_replace('<link ', '<link referrerpolicy="strict-origin-when-cross-origin" ', $tag);
+		$processor = new WP_HTML_Tag_Processor($tag);
+
+		if ($processor->next_tag()) {
+			$processor->set_attribute('referrerpolicy', 'strict-origin-when-cross-origin');
+		}
+
+		return $processor->get_updated_html();
 	}
 
 	/**
