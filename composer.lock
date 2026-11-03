@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "af47c85b597ab855d345fc6806e9e820",
+    "content-hash": "91134ee5d763c8520c0c7edceff895bd",
     "packages": [
         {
             "name": "bordoni/phpass",
@@ -10677,31 +10677,31 @@
         },
         {
             "name": "yard/webmanifest",
-            "version": "v1.2.0",
+            "version": "v1.3.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/yardinternet/wp-webmanifest.git",
-                "reference": "7619609f0c4fe36d24f8af153b3a9ce48e61bff0"
+                "reference": "12f8912f07c0da2158a5ab1c16d3483eb52f36e9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/yardinternet/wp-webmanifest/zipball/7619609f0c4fe36d24f8af153b3a9ce48e61bff0",
-                "reference": "7619609f0c4fe36d24f8af153b3a9ce48e61bff0",
+                "url": "https://api.github.com/repos/yardinternet/wp-webmanifest/zipball/12f8912f07c0da2158a5ab1c16d3483eb52f36e9",
+                "reference": "12f8912f07c0da2158a5ab1c16d3483eb52f36e9",
                 "shasum": ""
             },
             "require": {
                 "intervention/image": "^3.9",
-                "php": ">=8.1",
+                "php": ">=8.2",
                 "spatie/laravel-data": "^4.11",
                 "spatie/laravel-package-tools": "^1.16",
                 "webmozart/assert": "^1.11"
             },
             "require-dev": {
                 "10up/wp_mock": "^0.4.2",
-                "larastan/larastan": "^2.0",
-                "orchestra/testbench": "^8.23",
-                "pestphp/pest": "^2.34",
-                "szepeviktor/phpstan-wordpress": "^1.0",
+                "larastan/larastan": "^3.0",
+                "orchestra/testbench": "^10.0",
+                "pestphp/pest": "^3.0",
+                "szepeviktor/phpstan-wordpress": "^2.0",
                 "yard/php-cs-fixer-rules": "^1.0"
             },
             "type": "package",
@@ -10724,9 +10724,10 @@
             "description": "Creates web app manifests",
             "support": {
                 "issues": "https://github.com/yardinternet/wp-webmanifest/issues",
-                "source": "https://github.com/yardinternet/wp-webmanifest/tree/v1.2.0"
+                "source": "https://github.com/yardinternet/wp-webmanifest/tree/v1.3.0"
             },
-            "time": "2025-01-07T14:24:14+00:00"
+            "time": "2026-11-03T12:26:52+00:00",
+            "published-time": "2026-11-03T12:27:51+00:00"
         },
         {
             "name": "yard/wp-block-registrar",
@@ -10990,5 +10991,5 @@
         "php": ">=8.2"
     },
     "platform-dev": {},
-    "plugin-api-version": "2.9.0"
+    "plugin-api-version": "2.11.0"
 }
