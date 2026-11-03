@@ -78,6 +78,7 @@ class Security
 
 	/**
 	 * The Den Haag components (used by owc-mijn-services) read window.NONCE for the styles they inject.
+	 * Webpack's style-loader (used by the OpenKaarten frontend plugin) reads window.__webpack_nonce__.
 	 */
 	#[Action('wp_head', 1)]
 	public function exposeNonceForInjectedStyles(): void
@@ -86,7 +87,7 @@ class Security
 			return;
 		}
 
-		wp_print_inline_script_tag('window.NONCE = document.currentScript.nonce;');
+		wp_print_inline_script_tag('window.NONCE = window.__webpack_nonce__ = document.currentScript.nonce;');
 	}
 
 	/**
