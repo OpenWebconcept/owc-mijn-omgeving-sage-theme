@@ -1,13 +1,17 @@
-@php
-	$primaryNavigation = \Log1x\Navi\Navi::make()->build('primary_navigation');
-	$topBarNavigation = \Log1x\Navi\Navi::make()->build('top_bar_navigation');
-@endphp
-
 @props([
     'dialogId' => 'js-brave-mobile-menu',
     'label' => __('Menu', 'sage'),
 ])
 
+@php
+	$primaryNavigation = \Log1x\Navi\Navi::make()->build('primary_navigation');
+	$topBarNavigation = \Log1x\Navi\Navi::make()->build('top_bar_navigation');
+	$isLoggedIn = !is_null($userModel) && $userModel->isLoggedIn();
+	$showLoginButton = !$isLoggedIn && config('theme.login_menu.show_login_button_mobile', false);
+	$hasMenuContent = $isLoggedIn || $showLoginButton || $primaryNavigation->isNotEmpty() || $topBarNavigation->isNotEmpty();
+@endphp
+
+@if ($hasMenuContent)
 <x-brave::dialog.trigger :dialogId="$dialogId" class="hamburger flex h-[46px] flex-col gap-y-2 lg:hidden">
 	<span class="block h-0.5 w-8 rounded-full bg-black transition-all duration-300 ease-in-out"></span>
 	<span class="block h-0.5 w-6 rounded-full bg-black transition-all duration-300 ease-in-out"></span>
@@ -30,9 +34,9 @@
 			</x-brave::dialog.trigger>
 		</div>
 
-		@if (!is_null($userModel) && $userModel->isLoggedIn())
+		@if ($isLoggedIn)
 			<x-menu.sidebar class="block! mb-6 mt-4 px-6" />
-		@elseif (config('theme.login_menu.show_login_button_mobile', true))
+		@elseif ($showLoginButton)
 			<a href="{{ home_url() }}" class="is-button mb-4 after:content-none">
 				Inloggen
 			</a>
@@ -85,3 +89,4 @@
 		</x-brave::nav>
 	</div>
 </x-brave-dialog>
+@endif
