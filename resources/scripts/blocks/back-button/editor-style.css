@@ -1,4 +1,4 @@
-@reference '@sage/styles/base/config.css';
+@reference '@owc-mijn-omgeving/styles/base/config.css';
 
 .wp-block-theme-back-button {
 	@apply flex;
