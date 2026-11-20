@@ -75,17 +75,23 @@ class Assets
 			// The CSS variant of the kit is used, because the JS variant injects inline styles which are blocked by the CSP.
 			wp_enqueue_style('fontawesome', preg_replace('/\.js$/', '.css', $fontawesomeKit), [], null);
 		}
+	}
 
+	#[Action('enqueue_block_assets')]
+	public function enqueueThemeFont(): void
+	{
 		$fontUrl = trim((string) config('theme.font.url', ''));
+
+		if ('' === $fontUrl) {
+			return;
+		}
 
 		if (str_starts_with($fontUrl, 'https://fonts.googleapis.com/')) {
 			config(['google-fonts.fonts.default' => $fontUrl]);
 			$fontUrl = app(GoogleFonts::class)->load()->url();
 		}
 
-		if ('' !== $fontUrl) {
-			wp_enqueue_style('theme-font', $fontUrl, [], null);
-		}
+		wp_enqueue_style('theme-font', $fontUrl, [], null);
 	}
 
 	/**
