@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace OWC\MijnOmgeving\Hooks;
 
 use Illuminate\Support\Facades\Vite;
+use Spatie\GoogleFonts\GoogleFonts;
 use Yard\Hook\Action;
 use Yard\Hook\Filter;
 use WP_HTML_Tag_Processor;
@@ -75,7 +76,16 @@ class Assets
 			wp_enqueue_style('fontawesome', preg_replace('/\.js$/', '.css', $fontawesomeKit), [], null);
 		}
 
-		wp_enqueue_style('theme-font', config('theme.font.url'), [], null);
+		$fontUrl = trim((string) config('theme.font.url', ''));
+
+		if (str_starts_with($fontUrl, 'https://fonts.googleapis.com/')) {
+			config(['google-fonts.fonts.default' => $fontUrl]);
+			$fontUrl = app(GoogleFonts::class)->load()->url();
+		}
+
+		if ('' !== $fontUrl) {
+			wp_enqueue_style('theme-font', $fontUrl, [], null);
+		}
 	}
 
 	/**

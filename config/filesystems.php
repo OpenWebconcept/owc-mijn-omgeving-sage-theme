@@ -46,6 +46,14 @@ return [
 			'throw' => false,
 		],
 
+		'storage-cache' => [
+			'driver' => 'local',
+			'root' => get_theme_file_path('storage/framework/cache'),
+			'url' => get_theme_file_uri('storage/framework/cache'),
+			'visibility' => 'public',
+			'throw' => false,
+		],
+
 		's3' => [
 			'driver' => 's3',
 			'key' => env('AWS_ACCESS_KEY_ID'),
