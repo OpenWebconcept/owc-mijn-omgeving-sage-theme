@@ -6,7 +6,7 @@
 		@apply border-primary outline-primary;
 	}
 
-	&[readonly='readonly'] {
+	&[readonly] {
 		@apply cursor-not-allowed bg-gray-100;
 
 		&:focus {
