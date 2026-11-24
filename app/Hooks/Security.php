@@ -145,6 +145,23 @@ class Security
 	}
 
 	/**
+    * Add page nonce to gf ajax postback iframe so iframe nonce is the same as page nonce
+    */
+	#[Filter('gform_ajax_iframe_content')]
+	public function addNonceInGFAjaxPostback(string $content): string
+    {
+		if (! Policy::restrictsInlineSources() || ! str_contains($content, '</head>')) {
+			return $content;
+		}
+
+		return str_replace(
+			'</head>',
+			wp_get_inline_script_tag('window.owcCspNonce = document.currentScript.nonce;') . '</head>',
+			$content,
+		);
+	}
+
+	/**
 	 * Gravity Forms Zero Spam prints its config as an inline script without nonce.
 	 */
 	#[Filter('script_loader_tag', 20)]
