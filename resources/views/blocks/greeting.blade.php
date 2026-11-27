@@ -5,3 +5,4 @@
 		{!! $greeting !!}
 	@endif
 </h1>
+<x-brave-tolkie />
