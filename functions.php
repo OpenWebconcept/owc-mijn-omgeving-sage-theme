@@ -14,18 +14,10 @@ declare(strict_types=1);
 |
 */
 
-if (! function_exists('\Roots\bootloader')) {
-	wp_die(
-		__('You need to install Acorn to use this theme.', 'sage'),
-		'',
-		[
-			'link_url' => 'https://roots.io/acorn/docs/installation/',
-			'link_text' => __('Acorn Docs: Installation', 'sage'),
-		]
-	);
-}
-
-add_action('after_setup_theme', function () {
-	define('ACORN_BASEPATH', __DIR__);
-	\Yard\Nutshell\bootloader()->boot();
-}, 0);
+define('ACORN_BASEPATH', __DIR__);
+\Yard\Nutshell\Application::configure()
+	->withProviders([
+		\OWC\MijnOmgeving\Providers\ThemeServiceProvider::class,
+		\OWC\MijnOmgeving\Providers\GravityFormsServiceProvider::class,
+	])
+	->boot();

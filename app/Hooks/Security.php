@@ -6,18 +6,35 @@ namespace OWC\MijnOmgeving\Hooks;
 
 use OWC\MijnOmgeving\Csp\Policy;
 use WP_HTML_Tag_Processor;
+use Yard\Brave\Hooks\Security as BraveSecurity;
 use Yard\Hook\Action;
 use Yard\Hook\Filter;
 
-class Security
+/**
+ * Extends Yard\Brave\Hooks\Security to keep its hooks (e.g. the nonce on <script> tags),
+ * except for its headers, see sendHeaders().
+ */
+class Security extends BraveSecurity
 {
 	/**
-	 * Overrides the Referrer-Policy set by Yard\Brave\Hooks\Security, DigiD norm U/PW.03 requires 'no-referrer' or 'same-origin'.
+	 * The hook registrar only registers methods carrying a hook attribute, so overriding
+	 * this method without one prevents the headers of Yard\Brave\Hooks\Security from being sent.
 	 */
-	#[Action('send_headers', 20)]
+	public function sendHeaders(): void
+	{
+	}
+
+	/**
+	 * DigiD norm U/PW.03 requires 'no-referrer' or 'same-origin'.
+	 */
+	#[Action('send_headers')]
 	public function sendReferrerPolicyHeader(): void
 	{
+		// Set the Referrer-Policy header to 'same-origin' as required by DigiD norm U/PW.03.
 		header('Referrer-Policy: same-origin', true);
+
+		// Disable unused device permissions
+		header('Permissions-Policy: accelerometer=(),autoplay=(self),camera=(),display-capture=(),encrypted-media=(),fullscreen=(*),geolocation=(),gyroscope=(),magnetometer=(),microphone=(),midi=(),payment=(),picture-in-picture=(),publickey-credentials-get=(),screen-wake-lock=(),sync-xhr=(self),usb=(),xr-spatial-tracking=()');
 	}
 
 	/**
