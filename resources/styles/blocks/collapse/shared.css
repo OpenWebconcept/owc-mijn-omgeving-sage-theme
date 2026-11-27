@@ -3,7 +3,7 @@
 }
 
 .wp-block-yard-collapse-item {
-	@apply rounded-theme mb-2 bg-white shadow-sm;
+	@apply mb-2 rounded-theme bg-white shadow-sm;
 
 	&:last-child {
 		@apply mb-0;
@@ -19,14 +19,14 @@
 }
 
 .wp-block-yard-collapse-item__header-button {
-	@apply rounded-theme relative mb-0 p-4 pr-12 font-normal text-black transition-all lg:pr-14 lg:pl-6;
+	@apply relative mb-0 rounded-theme p-4 pr-12 font-normal text-black transition-all lg:pr-14 lg:pl-6;
 
 	&::before {
-		@apply content rounded-theme absolute top-1/2 right-4 size-8 -translate-y-1/2 bg-transparent transition-colors lg:right-6;
+		@apply content absolute top-1/2 right-4 size-8 -translate-y-1/2 rounded-theme bg-transparent transition-colors lg:right-6;
 	}
 
 	&::after {
-		@apply icon text-primary absolute top-1/2 right-6 -translate-y-1/2 transition-[color,rotate] lg:right-8;
+		@apply icon absolute top-1/2 right-6 -translate-y-1/2 text-primary transition-[color,rotate] lg:right-8;
 		--icon: var( --icon-chevron-down );
 		--icon-size: --spacing( 5 );
 	}

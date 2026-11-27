@@ -70,6 +70,8 @@ class Theme extends \Yard\Brave\Hooks\Theme
 		wp_print_inline_script_tag(
 			'window.theme = Object.assign({}, window.theme || {}, ' . wp_json_encode([
 				'is_deepl_enabled' => $this->isDeepLEnabled(),
+				'is_tolkie_enabled' => '' !== (string) config('components.tolkie.token', ''),
+				'a11y_toolbar' => config('theme.a11y_toolbar', []),
 			], JSON_UNESCAPED_UNICODE) . ');'
 		);
 	}

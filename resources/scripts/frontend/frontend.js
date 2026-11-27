@@ -33,11 +33,14 @@ window.addEventListener( 'DOMContentLoaded', () => {
 	new A11yCards();
 	new A11yMobileMenu();
 	new A11yToolbar( '.js-a11y-toolbar', {
-		showContrastButton: false,
-		showTextSizeButton: false,
+		showContrastButton:
+			window.theme?.a11y_toolbar?.show_contrast_button ?? false,
+		showTextSizeButton:
+			window.theme?.a11y_toolbar?.show_text_size_button ?? false,
 		showReadSpeakerButton: false,
-		showPrintButton: false,
+		showPrintButton: window.theme?.a11y_toolbar?.show_print_button ?? false,
 		showDeepLButton: window.theme?.is_deepl_enabled ?? false,
+		showTolkieTranslateButton: window.theme?.is_tolkie_enabled ?? false,
 		showLanguageButton: false,
 		iconOptions: {
 			/* Unlike the others, this one only accepts a class; it is masked in CSS. */
