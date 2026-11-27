@@ -1,159 +1,159 @@
 @variant print {
-	body {
-		@apply bg-white leading-normal text-black;
-	}
+    body {
+        @apply bg-white leading-normal text-black;
+    }
 
-	header {
-		@apply hidden;
-	}
+    header {
+        @apply hidden;
+    }
 
-	main {
-		@apply mt-0!;
-	}
+    main {
+        @apply mt-0!;
+    }
 
-	h1 {
-		@apply text-[24pt];
-	}
+    h1 {
+        @apply text-[24pt];
+    }
 
-	h2,
-	h3,
-	h4 {
-		@apply my-[10pt] text-[16pt];
-	}
+    h2,
+    h3,
+    h4 {
+        @apply my-[10pt] text-[16pt];
+    }
 
-	h5,
-	h6 {
-		@apply mt-[10pt] mb-[7pt] text-[14pt];
-	}
+    h5,
+    h6 {
+        @apply mt-[10pt] mb-[7pt] text-[14pt];
+    }
 
-	h1,
-	h2,
-	h3,
-	h4,
-	h5,
-	h6 {
-		@apply break-inside-avoid break-after-avoid;
-	}
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+        @apply break-inside-avoid break-after-avoid;
+    }
 
-	p,
-	p.has-lead-font-size,
-	p.has-medium-font-size,
-	p.has-small-font-size,
-	address,
-	li,
-	dt,
-	dd,
-	blockquote {
-		@apply text-[12pt]!;
-	}
+    p,
+    p.has-lead-font-size,
+    p.has-medium-font-size,
+    p.has-small-font-size,
+    address,
+    li,
+    dt,
+    dd,
+    blockquote {
+        @apply text-[12pt]!;
+    }
 
-	a[href^='http']::after {
-		@apply text-[100%];
-		content: ' <' attr( href ) '> ';
-	}
+    a[href^='http']::after {
+        @apply text-[100%];
+        content: ' <' attr(href) '> ';
+    }
 
-	a,
-	blockquote,
-	img,
-	table,
-	pre,
-	ul,
-	ol,
-	dl,
-	.wp-block-media-text {
-		@apply break-inside-avoid;
-	}
+    a,
+    blockquote,
+    img,
+    table,
+    pre,
+    ul,
+    ol,
+    dl,
+    .wp-block-media-text {
+        @apply break-inside-avoid;
+    }
 
-	.wp-block-embed.is-type-video {
-		@apply hidden! size-0! overflow-hidden! leading-none! whitespace-nowrap;
-	}
+    .wp-block-embed.is-type-video {
+        @apply hidden! size-0! overflow-hidden! leading-none! whitespace-nowrap;
+    }
 
-	.breadcrumbs-wrapper {
-		@apply hidden;
-	}
+    .breadcrumbs-wrapper {
+        @apply hidden;
+    }
 
-	.layout-sidebar-menu-main__aside {
-		@apply hidden;
-	}
+    .layout-sidebar-menu-main__aside {
+        @apply hidden;
+    }
 
-	.layout-sidebar-menu-main__article {
-		@apply col-span-full;
-	}
+    .layout-sidebar-menu-main__article {
+        @apply col-span-full;
+    }
 
-	/* Columns */
-	.wp-block-columns {
-		@apply grid! grid-cols-1!;
-	}
+    /* Columns */
+    .wp-block-columns {
+        @apply grid! grid-cols-1!;
+    }
 
-	/* Case cards */
-	.denhaag-tabs {
-		@apply hidden!;
-	}
+    /* Case cards */
+    .denhaag-tabs {
+        @apply hidden!;
+    }
 
-	.denhaag-card-group {
-		@apply flex flex-col gap-8;
-	}
+    .denhaag-card-group {
+        @apply flex flex-col gap-8;
+    }
 
-	.denhaag-case-card,
-	.denhaag-case-card * {
-		@apply [all:revert]!;
-	}
+    .denhaag-case-card,
+    .denhaag-case-card * {
+        @apply [all:revert]!;
+    }
 
-	.denhaag-case-card::before {
-		@apply hidden!;
-	}
+    .denhaag-case-card::before {
+        @apply hidden!;
+    }
 
-	.denhaag-case-card__title {
-		@apply font-bold!;
-	}
+    .denhaag-case-card__title {
+        @apply font-bold!;
+    }
 
-	.denhaag-case-card__action {
-		&::before {
-			@apply hidden!;
-		}
+    .denhaag-case-card__action {
+        &::before {
+            @apply hidden!;
+        }
 
-		&::after {
-			@apply content-[attr(href)]!;
-		}
-	}
+        &::after {
+            @apply content-[attr(href)]!;
+        }
+    }
 
-	/* Buttons */
-	.wp-block-button__link {
-		@apply inline-flex!;
-	}
+    /* Buttons */
+    .wp-block-button__link {
+        @apply inline-flex!;
+    }
 
-	/* Social links */
-	.wp-block-social-links,
-	.wp-block-social-links * {
-		@apply [all:revert]!;
-	}
+    /* Social links */
+    .wp-block-social-links,
+    .wp-block-social-links * {
+        @apply [all:revert]!;
+    }
 
-	.wp-block-social-links {
-		@apply grid! list-none! gap-2! pl-0!;
+    .wp-block-social-links {
+        @apply grid! list-none! gap-2! pl-0!;
 
-		li {
-			@apply contents!;
-		}
+        li {
+            @apply contents!;
+        }
 
-		a {
-			@apply block!;
+        a {
+            @apply block!;
 
-			&::after {
-				@apply content-[attr(href)]!;
-			}
-		}
+            &::after {
+                @apply content-[attr(href)]!;
+            }
+        }
 
-		span {
-			@apply hidden;
-		}
+        span {
+            @apply hidden!;
+        }
 
-		svg {
-			@apply hidden!;
-		}
-	}
+        svg {
+            @apply hidden!;
+        }
+    }
 
-	/* Tolkie */
-	.tolkie-container {
-		@apply hidden!;
-	}
+    /* Tolkie */
+    .tolkie-container {
+        @apply hidden!;
+    }
 }
