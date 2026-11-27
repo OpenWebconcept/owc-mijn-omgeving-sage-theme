@@ -17,3 +17,19 @@
 	@apply icon;
 	--icon: var( --icon-x );
 }
+
+html:has( .a11y-toolbar--text-size ) {
+	font-size: 125%;
+}
+
+html:has( .a11y-toolbar--contrast ) {
+	filter: invert( 1 ) hue-rotate( 180deg );
+
+	img {
+		filter: invert( 1 ) hue-rotate( 180deg );
+	}
+
+	.site-branding-logo {
+		filter: brightness( 0 );
+	}
+}

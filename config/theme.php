@@ -16,4 +16,9 @@ return [
 	'footer' => [
 		'is_active' => true,
 	],
+	'a11y_toolbar' => [
+		'show_contrast_button' => false,
+		'show_text_size_button' => false,
+		'show_print_button' => false,
+	],
 ];
